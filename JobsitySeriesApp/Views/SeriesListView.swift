@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct SeriesListView: View {
-    
     @StateObject var viewModel: SeriesListViewModel
     
     var body: some View {
-        ScrollView {
-            LazyVStack (alignment: .leading) {
-                ForEach(viewModel.series, id: \.id) { serie in
-                    SerieCellView(serie: serie)
-                    Divider()
-                }
+        ZStack {
+            switch viewModel.state {
+            case .idle, .loading:
+                ProgressView().progressViewStyle(CircularProgressViewStyle(tint: Color.black))
+            case .loaded:
+                SeriesViewContainer(viewModel: viewModel)
+            case .error:
+                SeriesErrorView(viewModel: viewModel)
             }
         }.onAppear() {
             viewModel.fetchSeries()
@@ -25,29 +26,69 @@ struct SeriesListView: View {
     }
 }
 
+struct SeriesViewContainer: View {
+    @StateObject var viewModel: SeriesListViewModel
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Series")
+                .font(.largeTitle)
+                .padding(.leading, 16)
+            ScrollView {
+                LazyVStack (alignment: .leading) {
+                    ForEach(viewModel.seriesList, id: \.id) { series in
+                        VStack {
+                            SerieCellView(series: series)
+                                .onAppear() {
+                                    if viewModel.recheadEndOfPage(series: series) {
+                                        viewModel.fetchSeriesNextPage()
+                                    }
+                                }
+                            Divider()
+                        }
+                    }
+                }
+            }}
+    }
+}
+
 struct SerieCellView: View {
-    var serie: Serie
+    var series: Series
     
     var body: some View {
         HStack {
-            AsyncImage(url: URL(string: serie.image.medium ?? "")) { image in
+            AsyncImage(url: URL(string: series.image.medium ?? "")) { image in
                 image
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 130, height: 150)
+                    .frame(width: 100, height: 120)
+                    .font(.system(size: 20))
             } placeholder: {
-                Text("Picture not found.")
+                ProgressView().progressViewStyle(.circular)
+                    .frame(width: 100, height: 120)
             }
-            
-            Text(serie.name ?? "")
-                .font(.system(size: 22))
+            Text(series.name)
+                .font(.system(size: 20))
                 .padding(.leading, 8)
             Spacer()
         }
-        .frame(width: .infinity, height: 150)
-        .clipShape(RoundedRectangle(cornerRadius:20))
         .padding(.vertical, 6)
         .padding(.horizontal, 16)
+    }
+}
+
+struct SeriesErrorView: View {
+    @StateObject var viewModel: SeriesListViewModel
+    
+    var body: some View {
+        VStack (spacing: 16) {
+            Text("Sorry, something went wrong.")
+            Button {
+                viewModel.fetchSeries()
+            } label: {
+                Text("try again")
+            }
+        }
     }
 }
 

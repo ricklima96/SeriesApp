@@ -14,11 +14,11 @@ struct JobsitySeriesApp: App {
             TabView {
                 SeriesListView(viewModel: SeriesListViewModel())
                     .tabItem {
-                        Label("series", systemImage: "sparkles.tv")
+                        Label("", systemImage: "sparkles.tv")
                     }
                 SearchView(viewModel: SearchViewModel())
                     .tabItem {
-                        Label("search", systemImage: "sparkle.magnifyingglass")
+                        Label("", systemImage: "sparkle.magnifyingglass")
                     }
             }
         }

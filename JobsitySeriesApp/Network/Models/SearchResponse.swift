@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Search {
+struct SearchResponse {
     
 }

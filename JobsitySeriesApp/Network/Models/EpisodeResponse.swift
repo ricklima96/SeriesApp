@@ -1,5 +1,5 @@
 //
-//  Episode.swift
+//  EpisodeResponse.swift
 //  JobsitySeriesApp
 //
 //  Created by Ricardo Ribeiro on 27/06/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Episode : Codable {
+struct EpisodeResponse : Codable {
     var id: Int
     var name: String
     var number: Int

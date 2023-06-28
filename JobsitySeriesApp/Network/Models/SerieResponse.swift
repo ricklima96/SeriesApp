@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Serie : Codable {
+struct SerieResponse : Codable {
     var id: Int
     var url: String?
     var name: String?

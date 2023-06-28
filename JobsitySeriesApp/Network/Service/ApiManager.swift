@@ -2,28 +2,25 @@
 //  ApiManager.swift
 //  JobsitySeriesApp
 //
-//  Created by Ricardo Ribeiro on 27/06/23.
+//  Created by Ricardo Ribeiro on 28/06/23.
 //
 
 import Foundation
-import Alamofire
 
-public class ApiManager {
-    
+struct ApiManager {
     public static let shared = ApiManager()
     
-    func callApi(endpoint: String, method: HTTPMethod = .get, headers: HTTPHeaders? = nil, parameters: Parameters? = nil,
-                 completionHandler: @escaping (Result<Data?, Error>) -> Void) {
-        
-        if let url = URLComponents(string: "\(endpoint)") {
-            AF.request(url, method: method, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
-                .responseJSON { response in
-                    if response.error != nil {
-                        completionHandler(.failure(response.error!))
-                    } else {
-                        completionHandler(.success(response.data))
+    func callApi<T: Decodable>(ofType: T.Type, url: URLRequest, completionHandler: @escaping (Result<T, Error>) -> Void) {
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data {
+                if let decodedResponse = try? JSONDecoder().decode(T.self, from: data) {
+                    DispatchQueue.main.async {
+                        completionHandler(.success(decodedResponse))
                     }
+                    return
                 }
-        }
+            }
+            completionHandler(.failure(error!))
+        }.resume()
     }
 }
