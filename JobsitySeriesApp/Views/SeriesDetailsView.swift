@@ -12,54 +12,52 @@ struct SeriesDetailsView: View {
     let series: Series
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(alignment: .leading) {
-                    Text(series.name).font(.largeTitle)
-                        .padding(.leading, 16)
-                        .padding(.top, 20)
-                    HStack {
-                        Spacer()
-                        AsyncImage(url: URL(string: series.image.medium ?? "")) { image in
-                            image
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 300, height: 300)
-                                .font(.system(size: 20))
-                        } placeholder: {
-                            ProgressView().progressViewStyle(.circular)
-                                .frame(width: 300, height: 300)
-                        }
-                        .padding(.bottom, 16)
-                        Spacer()
-                    }
-                    VStack(alignment: .leading, spacing: 16) {
-                        HStack {
-                            Text("time:").font(.title3)
-                            Text(series.schedule.time ?? "-")
-                        }
-                        HStack {
-                            Text("days:").font(.title3)
-                            ForEach (series.schedule.days ?? ["-"], id: \.self) { day in
-                                Text (day.lowercased())
-                            }
-                        }
-                        HStack {
-                            Text("genres:").font(.title3)
-                            ForEach (series.genres ?? ["-"], id: \.self) { genre in
-                                Text (genre.lowercased())
-                            }
-                        }
-                        HStack (alignment: .top) {
-                            Text("summary:").font(.title3)
-                            Text (series.summary.lowercased().removeHtmlTags())
-                        }
-                        EpisodeListView(viewModel: viewModel)
-                    }
+        ScrollView {
+                Text(series.name).font(.largeTitle)
                     .padding(.leading, 16)
-                }.onAppear() {
-                    viewModel.fetchEpisodes(id: series.id)
+                    .padding(.top, 20)
+            VStack(alignment: .leading) {
+                HStack {
+                    Spacer()
+                    AsyncImage(url: URL(string: series.image.medium ?? "")) { image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 300, height: 300)
+                            .font(.system(size: 20))
+                    } placeholder: {
+                        ProgressView().progressViewStyle(.circular)
+                            .frame(width: 300, height: 300)
+                    }
+                    .padding(.bottom, 16)
+                    Spacer()
                 }
+                VStack(alignment: .leading, spacing: 16) {
+                    HStack {
+                        Text("time:").font(.title3)
+                        Text(series.schedule.time ?? "-")
+                    }
+                    HStack {
+                        Text("days:").font(.title3)
+                        ForEach (series.schedule.days ?? ["-"], id: \.self) { day in
+                            Text (day)
+                        }
+                    }
+                    HStack {
+                        Text("genres:").font(.title3)
+                        ForEach (series.genres ?? ["-"], id: \.self) { genre in
+                            Text (genre)
+                        }
+                    }
+                    HStack (alignment: .top) {
+                        Text("summary:").font(.title3)
+                        Text (series.summary)
+                    }
+                    EpisodeListView(viewModel: viewModel)
+                }
+                .padding(.horizontal, 16)
+            }.onAppear() {
+                viewModel.fetchEpisodes(id: series.id)
             }
         }
     }
@@ -78,10 +76,7 @@ struct EpisodeListView: View {
         case .loaded:
             ForEach(viewModel.episodesList, id: \.id) { episode in
                 NavigationLink(destination: EpisodeDetailsView(/*viewModel: SeriesDetailsViewModel(), */episode: episode)) {
-                    HStack {
-                        Text("S\(episode.season)")
-                        Text(episode.name)
-                    }
+                    Text("S\(episode.season)E\(episode.number) \(episode.name)")
                 }.buttonStyle(.plain)
             }
         case .error:

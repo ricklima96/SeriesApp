@@ -31,7 +31,6 @@
 		35F54C0E2A4DC81600AAFDBF /* GetAllEpisodesUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F54C0D2A4DC81600AAFDBF /* GetAllEpisodesUseCaseProtocol.swift */; };
 		35F54C102A4DC9CB00AAFDBF /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F54C0F2A4DC9CB00AAFDBF /* Episode.swift */; };
 		35F54C122A4DE40E00AAFDBF /* EpisodeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F54C112A4DE40E00AAFDBF /* EpisodeDetailsView.swift */; };
-		35F54C142A4DE46C00AAFDBF /* EpisodeDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F54C132A4DE46C00AAFDBF /* EpisodeDetailsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,7 +78,6 @@
 		35F54C0D2A4DC81600AAFDBF /* GetAllEpisodesUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllEpisodesUseCaseProtocol.swift; sourceTree = "<group>"; };
 		35F54C0F2A4DC9CB00AAFDBF /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
 		35F54C112A4DE40E00AAFDBF /* EpisodeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsView.swift; sourceTree = "<group>"; };
-		35F54C132A4DE46C00AAFDBF /* EpisodeDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +188,7 @@
 		356F5C902A4B60370042EF4B /* JobsitySeriesApp */ = {
 			isa = PBXGroup;
 			children = (
+				353CECED2A4B8E59003CC18B /* Network */,
 				35F54C072A4DC19C00AAFDBF /* Utils */,
 				35654A942A4BC2A000925D72 /* UseCases */,
 				356F5C912A4B60370042EF4B /* JobsitySeriesApp.swift */,
@@ -228,7 +227,6 @@
 		35F54C072A4DC19C00AAFDBF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				353CECED2A4B8E59003CC18B /* Network */,
 				35F54C082A4DC1A800AAFDBF /* String.swift */,
 			);
 			path = Utils;
@@ -238,7 +236,6 @@
 			isa = PBXGroup;
 			children = (
 				35F54C0A2A4DC29100AAFDBF /* SeriesDetailsViewModel.swift */,
-				35F54C132A4DE46C00AAFDBF /* EpisodeDetailsViewModel.swift */,
 				353CECE92A4B7D77003CC18B /* SeriesListViewModel.swift */,
 				353CECF82A4B9037003CC18B /* SearchViewModel.swift */,
 			);
@@ -394,7 +391,6 @@
 				353CECF52A4B8EF7003CC18B /* SearchResponse.swift in Sources */,
 				35654A962A4BC2BA00925D72 /* GetAllSeriesUseCaseProtocol.swift in Sources */,
 				3557E0AA2A4B7BBC00D49A3F /* SeriesService.swift in Sources */,
-				35F54C142A4DE46C00AAFDBF /* EpisodeDetailsViewModel.swift in Sources */,
 				3557E0A62A4B795800D49A3F /* SeriesResponse.swift in Sources */,
 				35F54C092A4DC1A800AAFDBF /* String.swift in Sources */,
 				35F54C042A4DBB3C00AAFDBF /* SeriesDetailsView.swift in Sources */,

@@ -19,7 +19,7 @@ class GetAllSeriesUseCase: GetAllSeriesUseCaseProtocol {
                 let series = seriesReponse.map {
                     Series(id: String($0.id), name: $0.name ?? "", image: $0.image,
                                                        schedule: $0.schedule, genres: $0.genres ?? [],
-                                                       summary: $0.summary ?? "")
+                           summary: $0.summary?.removeHtmlTags() ?? "")
                 }
                 completionHandler(.success(series))
             case.failure(let error):

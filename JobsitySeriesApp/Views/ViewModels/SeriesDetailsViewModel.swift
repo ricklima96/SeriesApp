@@ -14,7 +14,6 @@ protocol SeriesDetailsViewModelProtocol {
 class SeriesDetailsViewModel: ObservableObject, SeriesDetailsViewModelProtocol {
     @Published var state: ResponseState = .idle
     @Published var episodesList: [Episode] = []
-    private var paging = 0
     private var getAllEpisodesUseCase: GetAllEpisodesUseCaseProtocol
     
     init(getAllEpisodesUseCase: GetAllEpisodesUseCaseProtocol = GetAllEpisodesUseCase()) {
