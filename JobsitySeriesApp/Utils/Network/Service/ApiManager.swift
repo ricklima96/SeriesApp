@@ -12,15 +12,20 @@ struct ApiManager {
     
     func callApi<T: Decodable>(ofType: T.Type, url: URLRequest, completionHandler: @escaping (Result<T, Error>) -> Void) {
         URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data = data {
-                if let decodedResponse = try? JSONDecoder().decode(T.self, from: data) {
-                    DispatchQueue.main.async {
-                        completionHandler(.success(decodedResponse))
-                    }
-                    return
-                }
+            guard let data = data else {
+                completionHandler(.failure(error!))
+                return
             }
-            completionHandler(.failure(error!))
+            
+            do {
+                let decodedResponse = try JSONDecoder().decode(T.self, from: data)
+                DispatchQueue.main.async {
+                    completionHandler(.success(decodedResponse))
+                }
+                return
+            } catch {
+                print(error)
+            }
         }.resume()
     }
 }

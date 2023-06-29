@@ -15,14 +15,14 @@ class GetSearchedSeriesUseCase: GetSearchedSeriesUseCaseProtocol {
     func getSearchedSeries(query: String, completionHandler: @escaping (Result<[Series], Error>) -> Void) {
         SeriesService.shared.fetchSearchedSeries(query: query) { result in
             switch result {
-            case.success(let seriesReponse):
-                let series = seriesReponse.map {
-                    Series(id: $0.id, name: $0.name ?? "", image: $0.image,
-                                                       schedule: $0.schedule, genres: $0.genres ?? [],
-                                                       summary: $0.summary ?? "")
+            case .success(let searchResponse):
+                let series = searchResponse.map {
+                    Series(id: String($0.show.id), name: $0.show.name ?? "", image: $0.show.image,
+                           schedule: $0.show.schedule, genres: $0.show.genres ?? [],
+                           summary: $0.show.summary ?? "")
                 }
                 completionHandler(.success(series))
-            case.failure(let error):
+            case .failure(let error):
                 completionHandler(.failure(error))
             }
         }

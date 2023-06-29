@@ -8,7 +8,7 @@
 import Foundation
 
 struct Series {
-    var id: Int
+    var id: String
     var name: String
     var image: Picture
     var schedule: Schedule

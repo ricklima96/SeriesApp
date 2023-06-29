@@ -11,17 +11,20 @@ struct SeriesListView: View {
     @StateObject var viewModel: SeriesListViewModel
     
     var body: some View {
-        ZStack {
-            switch viewModel.state {
-            case .idle, .loading:
-                ProgressView().progressViewStyle(CircularProgressViewStyle(tint: Color.black))
-            case .loaded:
-                SeriesViewContainer(viewModel: viewModel)
-            case .error:
-                SeriesErrorView(viewModel: viewModel)
+        NavigationView {
+            ZStack {
+                switch viewModel.state {
+                case .idle, .loading:
+                    ProgressView().progressViewStyle(.circular)
+                        .frame(width: 100, height: 120)
+                case .loaded:
+                    SeriesViewContainer(viewModel: viewModel)
+                case .error:
+                    SeriesErrorView(viewModel: viewModel)
+                }
+            }.onAppear() {
+                viewModel.fetchSeries()
             }
-        }.onAppear() {
-            viewModel.fetchSeries()
         }
     }
 }
@@ -37,18 +40,22 @@ struct SeriesViewContainer: View {
             ScrollView {
                 LazyVStack (alignment: .leading) {
                     ForEach(viewModel.seriesList, id: \.id) { series in
-                        VStack {
-                            SerieCellView(series: series)
-                                .onAppear() {
-                                    if viewModel.recheadEndOfPage(series: series) {
-                                        viewModel.fetchSeriesNextPage()
+                        NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(), series: series)) {
+                            VStack {
+                                SerieCellView(series: series)
+                                    .onAppear() {
+                                        if viewModel.recheadEndOfPage(series: series) {
+                                            viewModel.fetchSeriesNextPage()
+                                        }
                                     }
-                                }
-                            Divider()
+                                Divider()
+                            }
                         }
+                        .buttonStyle(.plain)
                     }
                 }
-            }}
+            }
+        }
     }
 }
 

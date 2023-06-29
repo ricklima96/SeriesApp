@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct EpisodeResponse : Codable {
+struct EpisodeResponse: Codable {
     var id: Int
     var name: String
     var number: Int
     var season: Int
-    var summary: Int
+    var summary: String
     var image: Picture?
 }

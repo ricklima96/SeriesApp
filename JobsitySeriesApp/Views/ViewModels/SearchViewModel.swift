@@ -27,15 +27,16 @@ class SearchViewModel: ObservableObject, SearchViewModelProtocol {
         getSearchedSeriesUseCase.getSearchedSeries(query: query) { result in
             switch result {
             case .success(let series):
-                self.series = series
-                self.state = .loaded
+                if series.count > 0 {
+                    self.series = series
+                    self.state = .loaded
+                    return
+                }
+                self.state = .error
             case .failure(let error):
                 print(error)
                 self.state = .error
             }
         }
     }
-    
 }
-
-

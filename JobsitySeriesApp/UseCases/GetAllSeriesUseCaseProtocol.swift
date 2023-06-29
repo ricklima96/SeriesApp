@@ -17,7 +17,7 @@ class GetAllSeriesUseCase: GetAllSeriesUseCaseProtocol {
             switch result {
             case.success(let seriesReponse):
                 let series = seriesReponse.map {
-                    Series(id: $0.id, name: $0.name ?? "", image: $0.image,
+                    Series(id: String($0.id), name: $0.name ?? "", image: $0.image,
                                                        schedule: $0.schedule, genres: $0.genres ?? [],
                                                        summary: $0.summary ?? "")
                 }
