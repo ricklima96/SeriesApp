@@ -11,15 +11,20 @@ struct SeriesResponse: Codable {
     var id: Int
     var url: String?
     var name: String?
-    var image: Picture
-    var schedule: Schedule
+    var image: Picture?
+    var schedule: ScheduleResponse?
+    var rating: RatingResponse?
     var genres: [String]?
     var summary: String?
 }
 
-struct Schedule: Codable {
+struct ScheduleResponse: Codable {
     var time: String?
     var days: [String]?
+}
+
+struct RatingResponse: Codable {
+    var average: Double?
 }
 
 struct Picture: Codable {

@@ -21,7 +21,7 @@ struct SeriesService {
         var urlRequest = URLRequest(url: seriesUrl.url!)
         urlRequest.httpMethod = "GET"
         
-        ApiManager.shared.callApi(ofType: [SeriesResponse].self, url: urlRequest) { response in
+        ApiManager.shared.callApi(ofType: [SeriesResponse].self, urlRequest: urlRequest) { response in
             switch response {
             case .success(let data):
                 completionHandler(.success(data))
@@ -32,14 +32,14 @@ struct SeriesService {
     }
     
     func fetchSearchedSeries(query: String, completionHandler: @escaping (Result<[SearchResponse], Error>) -> Void) {
-        var searchsUrl = URLComponents(string: searchUrl)!
+        var searchUrl = URLComponents(string: searchUrl)!
         let parameters = [URLQueryItem(name: "q", value: query)]
-        searchsUrl.queryItems = parameters
+        searchUrl.queryItems = parameters
          
-        var urlRequest = URLRequest(url: searchsUrl.url!)
+        var urlRequest = URLRequest(url: searchUrl.url!)
         urlRequest.httpMethod = "GET"
-                
-        ApiManager.shared.callApi(ofType: [SearchResponse].self, url: urlRequest) { response in
+        
+        ApiManager.shared.callApi(ofType: [SearchResponse].self, urlRequest: urlRequest) { response in
             switch response {
             case .success(let data):
                 completionHandler(.success(data))
@@ -55,7 +55,7 @@ struct SeriesService {
         var urlRequest = URLRequest(url: searchsUrl.url!)
         urlRequest.httpMethod = "GET"
                         
-        ApiManager.shared.callApi(ofType: [EpisodeResponse].self, url: urlRequest) { response in
+        ApiManager.shared.callApi(ofType: [EpisodeResponse].self, urlRequest: urlRequest) { response in
             switch response {
             case .success(let data):
                 completionHandler(.success(data))

@@ -10,8 +10,8 @@ import Foundation
 struct ApiManager {
     public static let shared = ApiManager()
     
-    func callApi<T: Decodable>(ofType: T.Type, url: URLRequest, completionHandler: @escaping (Result<T, Error>) -> Void) {
-        URLSession.shared.dataTask(with: url) { data, response, error in
+    func callApi<T: Decodable>(ofType: T.Type, urlRequest: URLRequest, completionHandler: @escaping (Result<T, Error>) -> Void) {
+        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             guard let data = data else {
                 completionHandler(.failure(error!))
                 return

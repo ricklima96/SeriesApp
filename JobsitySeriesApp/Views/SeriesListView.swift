@@ -64,16 +64,7 @@ struct SerieCellView: View {
     
     var body: some View {
         HStack {
-            AsyncImage(url: URL(string: series.image.medium ?? "")) { image in
-                image
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 120)
-                    .font(.system(size: 20))
-            } placeholder: {
-                ProgressView().progressViewStyle(.circular)
-                    .frame(width: 100, height: 120)
-            }
+            PosterContainerView(url: series.image.medium, width: 100, height: 300)
             Text(series.name)
                 .font(.system(size: 20))
                 .padding(.leading, 8)
@@ -97,6 +88,31 @@ struct SeriesErrorView: View {
             }
         }
     }
+}
+
+struct PosterContainerView: View {
+    let url: String
+    var width: CGFloat? = 0
+    var height: CGFloat? = 0
+    
+    var body: some View {
+        AsyncImage(url: URL(string: url)) { image in
+             if let image = image.image {
+                 image
+                     .resizable()
+                     .scaledToFit()
+                     .frame(width: width, height: height)
+                     .font(.system(size: 20))
+             } else if image.error != nil {
+                 Text("Image not found") // Indicates an error, show default image
+             } else {
+                 ProgressView().progressViewStyle(.circular)
+                     .frame(width: 100, height: 120)
+             }
+         }
+    }
+    
+    
 }
 
 struct SeriesListView_Previews: PreviewProvider {

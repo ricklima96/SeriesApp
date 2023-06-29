@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct SearchView: View {
+struct SearchSeriesView: View {
     @StateObject var viewModel: SearchViewModel
-    
+
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -77,8 +77,8 @@ struct SearchErrorView: View {
     }
 }
 
-struct SearchView_Previews: PreviewProvider {
+struct SearchSeriesView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchView(viewModel: SearchViewModel())
+        SearchSeriesView(viewModel: SearchViewModel())
     }
 }

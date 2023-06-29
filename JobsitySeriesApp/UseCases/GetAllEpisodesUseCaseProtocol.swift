@@ -17,8 +17,12 @@ class GetAllEpisodesUseCase: GetAllEpisodesUseCaseProtocol {
             switch result {
             case .success(let episodesResponse):
                 let episodes = episodesResponse.map {
-                    Episode(id: String($0.id), name: $0.name, number: String($0.number),
-                            season: String($0.season), summary: $0.summary.removeHtmlTags(), image: $0.image ?? Picture())
+                    Episode(id: String($0.id),
+                            name: $0.name,
+                            number: String($0.number),
+                            season: String($0.season),
+                            summary: $0.summary.removeHtmlTags(),
+                            image: $0.image ?? Picture())
                 }
                 completionHandler(.success(episodes))
             case .failure(let error):

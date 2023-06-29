@@ -9,9 +9,15 @@ import Foundation
 
 struct Series {
     var id: String
+    var rating: String
     var name: String
     var image: Picture
     var schedule: Schedule
     var genres: [String]
     var summary: String
+}
+
+struct Schedule {
+    var time: String
+    var days: [String]
 }

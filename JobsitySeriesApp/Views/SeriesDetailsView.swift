@@ -19,34 +19,29 @@ struct SeriesDetailsView: View {
             VStack(alignment: .leading) {
                 HStack {
                     Spacer()
-                    AsyncImage(url: URL(string: series.image.medium ?? "")) { image in
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 300, height: 300)
-                            .font(.system(size: 20))
-                    } placeholder: {
-                        ProgressView().progressViewStyle(.circular)
-                            .frame(width: 300, height: 300)
-                    }
+                    PosterContainerView(url: series.image.medium, width: 300, height: 400)
                     .padding(.bottom, 16)
                     Spacer()
                 }
                 VStack(alignment: .leading, spacing: 16) {
                     HStack {
+                        Text("rating:").font(.title3)
+                        Text(series.rating)
+                    }
+                    HStack {
                         Text("time:").font(.title3)
-                        Text(series.schedule.time ?? "-")
+                        Text(series.schedule.time)
                     }
                     HStack {
                         Text("days:").font(.title3)
-                        ForEach (series.schedule.days ?? ["-"], id: \.self) { day in
-                            Text (day)
+                        ForEach (series.schedule.days, id: \.self) { day in
+                            Text (day.lowercased())
                         }
                     }
                     HStack {
                         Text("genres:").font(.title3)
-                        ForEach (series.genres ?? ["-"], id: \.self) { genre in
-                            Text (genre)
+                        ForEach (series.genres, id: \.self) { genre in
+                            Text (genre.lowercased())
                         }
                     }
                     HStack (alignment: .top) {
@@ -87,6 +82,6 @@ struct EpisodeListView: View {
 
 struct SeriesDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        SeriesDetailsView(viewModel: SeriesDetailsViewModel(), series: Series(id: "1", name: "The Dome", image: Picture(medium: "https://static.tvmaze.com/uploads/images/medium_portrait/81/202627.jpg"), schedule: Schedule(time: "19:00", days: ["Friday", "Saturday"]), genres: ["Drama", "Dark Comedy"], summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."))
+        SeriesDetailsView(viewModel: SeriesDetailsViewModel(), series: Series(id: "1", rating: "9.5", name: "The Dome", image: Picture(medium: "https://static.tvmaze.com/uploads/images/medium_portrait/81/202627.jpg"), schedule: Schedule(time: "19:00", days: ["Friday", "Saturday"]), genres: ["Drama", "Dark Comedy"], summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."))
     }
 }

@@ -15,16 +15,7 @@ struct EpisodeDetailsView: View {
             Text(episode.name).font(.largeTitle)
             HStack {
                 Spacer()
-                AsyncImage(url: URL(string: episode.image.medium ?? "")) { image in
-                    image
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 300, height: 300)
-                        .font(.system(size: 20))
-                } placeholder: {
-                    ProgressView().progressViewStyle(.circular)
-                        .frame(width: 300, height: 300)
-                }
+                PosterContainerView(url: episode.image.medium, width: 300, height: 400)
                 Spacer()
             }
             .padding(.bottom, 16)
