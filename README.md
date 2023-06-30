@@ -16,6 +16,7 @@ Current features:
 - [ ] Bookmarked series
 - [ ] PIN and FaceID authentication
 - [ ] Search by Actor/Actress name
+- [x] Unit Testing
 
 
 Observations:
