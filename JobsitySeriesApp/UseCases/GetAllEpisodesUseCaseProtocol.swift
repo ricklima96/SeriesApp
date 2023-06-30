@@ -21,8 +21,8 @@ class GetAllEpisodesUseCase: GetAllEpisodesUseCaseProtocol {
                             name: $0.name,
                             number: String($0.number),
                             season: String($0.season),
-                            summary: $0.summary.removeHtmlTags(),
-                            image: $0.image ?? Picture())
+                            summary: $0.summary?.removeHtmlTags() ?? "-",
+                            image: Poster(imageUrl: $0.image?.medium))
                 }
                 completionHandler(.success(episodes))
             case .failure(let error):

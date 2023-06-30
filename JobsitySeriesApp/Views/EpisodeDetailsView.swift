@@ -12,15 +12,15 @@ struct EpisodeDetailsView: View {
     
     var body: some View {
         VStack(alignment: .center) {
-            Text(episode.name).font(.largeTitle)
+            Text(episode.name).font(.largeTitle).padding(.horizontal, 16)
             HStack {
                 Spacer()
-                PosterContainerView(url: episode.image.medium, width: 300, height: 400)
+                PosterContainerView(imageUrl: episode.image.imageUrl, width: 300, height: 200)
                 Spacer()
             }
             .padding(.bottom, 16)
             VStack(spacing: 16) {
-                Text("S\(episode.season)E\(episode.number)")
+                Text("S\(episode.season) E\(episode.number)").font(.headline)
                 Text(episode.summary)
                 Spacer()
             }
@@ -31,7 +31,7 @@ struct EpisodeDetailsView: View {
 
 struct EpisodeDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        EpisodeDetailsView(episode: Episode(id: "1", name: "Ozymandias", number: "1", season: "2", summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", image: Picture(medium: "https://static.tvmaze.com/uploads/images/medium_portrait/81/202627.jpg")))
+        EpisodeDetailsView(episode: Episode(id: "1", name: "Ozymandias", number: "1", season: "2", summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", image: Poster(imageUrl: "https://static.tvmaze.com/uploads/images/medium_portrait/81/202627.jpg")))
     }
 }
 

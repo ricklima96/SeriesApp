@@ -12,6 +12,6 @@ struct EpisodeResponse: Codable {
     var name: String
     var number: Int
     var season: Int
-    var summary: String
-    var image: Picture?
+    var summary: String?
+    var image: PosterResponse?
 }

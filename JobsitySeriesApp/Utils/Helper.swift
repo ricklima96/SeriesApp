@@ -24,4 +24,14 @@ class Helper{
         }
         return "-"
     }
+    
+    static func checkEmptyGenres(genres: [String]?) -> [String] {
+        if let genresReponse = genres {
+            if genresReponse.isEmpty {
+                return ["-"]
+            }
+            return genresReponse
+        }
+        return ["-"]
+    }
 }

@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct SearchResponse: Codable {
+struct SearchSeriesResponse: Codable {
     var show: SeriesResponse
 }

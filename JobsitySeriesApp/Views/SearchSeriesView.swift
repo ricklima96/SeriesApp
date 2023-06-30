@@ -16,28 +16,21 @@ struct SearchSeriesView: View {
                 Text("Search")
                     .font(.largeTitle)
                     .padding(.leading, 16)
-                TextField("Search for series...", text: $viewModel.query)
-                    .padding(7)
-                    .padding(.horizontal, 25)
-                    .background(Color(.systemGray6))
-                    .cornerRadius(8)
-                    .padding(.horizontal, 10)
-                    .onChange(of: viewModel.query, perform: { query in
-                        viewModel.fetchSearchedSerie(query: query)
-                    })
+                SearchBarView(viewModel: viewModel)
                 Spacer()
                 HStack {
                     Spacer()
                     ZStack(alignment: .center) {
                         switch viewModel.state {
                         case .idle:
-                            Text("Please search above.")
+                            Text("Please search above")
                         case .loading:
-                            ProgressView().progressViewStyle(CircularProgressViewStyle(tint: Color.black))
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle(tint: Color.black))
                         case .loaded:
                             SearchViewContainer(viewModel: viewModel)
                         case .error:
-                            SearchErrorView(viewModel: viewModel)
+                            Text("Series not found.")
                         }
                     }
                     Spacer()
@@ -45,6 +38,22 @@ struct SearchSeriesView: View {
                 Spacer()
             }
         }
+    }
+}
+
+struct SearchBarView: View {
+    @StateObject var viewModel: SearchViewModel
+
+    var body: some View {
+        TextField("Search for series...", text: $viewModel.query)
+            .padding(7)
+            .padding(.horizontal, 25)
+            .background(Color(.systemGray6))
+            .cornerRadius(8)
+            .padding(.horizontal, 10)
+            .onChange(of: viewModel.query, perform: { query in
+                viewModel.fetchSearchedSerie(query: query)
+            })
     }
 }
 
@@ -64,15 +73,6 @@ struct SearchViewContainer: View {
                     .buttonStyle(.plain)
                 }
             }
-        }
-    }
-}
-struct SearchErrorView: View {
-    @StateObject var viewModel: SearchViewModel
-    
-    var body: some View {
-        VStack (spacing: 16) {
-            Text("Series not found.")
         }
     }
 }

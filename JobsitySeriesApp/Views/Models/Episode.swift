@@ -13,5 +13,5 @@ struct Episode {
     var number: String
     var season: String
     var summary: String
-    var image: Picture
+    var image: Poster
 }

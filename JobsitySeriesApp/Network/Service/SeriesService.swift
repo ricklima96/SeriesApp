@@ -9,17 +9,9 @@ import Foundation
 
 struct SeriesService {
     public static let shared = SeriesService()
-    private var baseUrl = "https://api.tvmaze.com/shows"
-    private var searchUrl = "https://api.tvmaze.com/search/shows"
-    private var episodesPath = "/episodes"
-
+    
     func fetchAllSeries(page: Int, completionHandler: @escaping (Result<[SeriesResponse], Error>) -> Void) {
-        var seriesUrl = URLComponents(string: baseUrl)!
-        let parameters = [URLQueryItem(name: "page", value: String(page))]
-        seriesUrl.queryItems = parameters
-         
-        var urlRequest = URLRequest(url: seriesUrl.url!)
-        urlRequest.httpMethod = "GET"
+        let urlRequest = buildRequest(with: SeriesRequest(page: page))
         
         ApiManager.shared.callApi(ofType: [SeriesResponse].self, urlRequest: urlRequest) { response in
             switch response {
@@ -31,15 +23,10 @@ struct SeriesService {
         }
     }
     
-    func fetchSearchedSeries(query: String, completionHandler: @escaping (Result<[SearchResponse], Error>) -> Void) {
-        var searchUrl = URLComponents(string: searchUrl)!
-        let parameters = [URLQueryItem(name: "q", value: query)]
-        searchUrl.queryItems = parameters
-         
-        var urlRequest = URLRequest(url: searchUrl.url!)
-        urlRequest.httpMethod = "GET"
-        
-        ApiManager.shared.callApi(ofType: [SearchResponse].self, urlRequest: urlRequest) { response in
+    func fetchSearchedSeries(query: String, completionHandler: @escaping (Result<[SearchSeriesResponse], Error>) -> Void) {
+        let urlRequest = buildRequest(with: SearchSeriesRequest(query: query))
+
+        ApiManager.shared.callApi(ofType: [SearchSeriesResponse].self, urlRequest: urlRequest) { response in
             switch response {
             case .success(let data):
                 completionHandler(.success(data))
@@ -50,11 +37,8 @@ struct SeriesService {
     }
     
     func fetchAllEpisodes(id: String, completionHandler: @escaping (Result<[EpisodeResponse], Error>) -> Void) {
-        let searchsUrl = URLComponents(string: baseUrl + "/" + (id) + episodesPath)!
+        let urlRequest = buildRequest(with: EpisodeRequest(id: id))
         
-        var urlRequest = URLRequest(url: searchsUrl.url!)
-        urlRequest.httpMethod = "GET"
-                        
         ApiManager.shared.callApi(ofType: [EpisodeResponse].self, urlRequest: urlRequest) { response in
             switch response {
             case .success(let data):
@@ -63,5 +47,21 @@ struct SeriesService {
                 completionHandler(.failure(error))
             }
         }
+    }
+    
+    func buildRequest(with requestModel: RequestProtocol) -> URLRequest {
+        let parameters = requestModel.queryParameters?.map { URLQueryItem(name: $0.key, value: $0.value) }
+        var urlComponents = URLComponents(string: requestModel.url + requestModel.path)
+        urlComponents?.queryItems = parameters
+        
+        guard let url = urlComponents?.url else {
+            print("bad url")
+            return URLRequest(url: URL(fileURLWithPath: ""))
+        }
+        
+        var urlRequest = URLRequest(url: url, cachePolicy: .reloadRevalidatingCacheData)
+        urlRequest.httpMethod = requestModel.method
+        
+        return urlRequest
     }
 }

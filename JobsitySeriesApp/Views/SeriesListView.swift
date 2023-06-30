@@ -41,15 +41,12 @@ struct SeriesViewContainer: View {
                 LazyVStack (alignment: .leading) {
                     ForEach(viewModel.seriesList, id: \.id) { series in
                         NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(), series: series)) {
-                            VStack {
-                                SerieCellView(series: series)
-                                    .onAppear() {
-                                        if viewModel.recheadEndOfPage(series: series) {
-                                            viewModel.fetchSeriesNextPage()
-                                        }
+                            SerieCellView(series: series)
+                                .onAppear() {
+                                    if viewModel.recheadEndOfPage(series: series) {
+                                        viewModel.fetchSeriesNextPage()
                                     }
-                                Divider()
-                            }
+                                }
                         }
                         .buttonStyle(.plain)
                     }
@@ -64,7 +61,7 @@ struct SerieCellView: View {
     
     var body: some View {
         HStack {
-            PosterContainerView(url: series.image.medium, width: 100, height: 300)
+            PosterContainerView(imageUrl: series.image.imageUrl, width: 90, height: 125)
             Text(series.name)
                 .font(.system(size: 20))
                 .padding(.leading, 8)
@@ -91,28 +88,29 @@ struct SeriesErrorView: View {
 }
 
 struct PosterContainerView: View {
-    let url: String
+    let imageUrl: String?
     var width: CGFloat? = 0
     var height: CGFloat? = 0
     
     var body: some View {
-        AsyncImage(url: URL(string: url)) { image in
-             if let image = image.image {
-                 image
-                     .resizable()
-                     .scaledToFit()
-                     .frame(width: width, height: height)
-                     .font(.system(size: 20))
-             } else if image.error != nil {
-                 Text("Image not found") // Indicates an error, show default image
-             } else {
-                 ProgressView().progressViewStyle(.circular)
-                     .frame(width: 100, height: 120)
-             }
-         }
+        AsyncImage(url: URL(string: imageUrl ?? "")) { image in
+            if let image = image.image {
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: width, height: height)
+                    .font(.system(size: 20))
+            } else if image.error != nil || imageUrl == nil {
+                Text("poster not found")
+                    .frame(width: width, height: height)
+                    .multilineTextAlignment(.center)
+                    .border(.gray, width: 0.5)
+            } else {
+                ProgressView().progressViewStyle(.circular)
+                    .frame(width: width, height: height)
+            }
+        }
     }
-    
-    
 }
 
 struct SeriesListView_Previews: PreviewProvider {

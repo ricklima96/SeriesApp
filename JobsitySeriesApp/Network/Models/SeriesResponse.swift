@@ -10,8 +10,8 @@ import Foundation
 struct SeriesResponse: Codable {
     var id: Int
     var url: String?
-    var name: String?
-    var image: Picture?
+    var name: String
+    var image: PosterResponse?
     var schedule: ScheduleResponse?
     var rating: RatingResponse?
     var genres: [String]?
@@ -27,7 +27,7 @@ struct RatingResponse: Codable {
     var average: Double?
 }
 
-struct Picture: Codable {
+struct PosterResponse: Codable {
     var medium: String?
     var original: String?
 }

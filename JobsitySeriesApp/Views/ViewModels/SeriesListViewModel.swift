@@ -29,15 +29,17 @@ class SeriesListViewModel: ObservableObject, SeriesListViewModelProtocol {
     }
     
     func fetchSeries() {
+        if state != .loaded {
         state = .loading
-        getAllSeriesUseCase.getAllSeries(page: paging) { result in
-            switch result {
-            case .success(let seriesList):
-                self.seriesList = seriesList
-                self.state = .loaded
-            case .failure(let error):
-                print(error)
-                self.state = .error
+            getAllSeriesUseCase.getAllSeries(page: paging) { result in
+                switch result {
+                case .success(let seriesList):
+                    self.seriesList = seriesList
+                    self.state = .loaded
+                case .failure(let error):
+                    print(error)
+                    self.state = .error
+                }
             }
         }
     }

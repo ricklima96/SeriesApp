@@ -11,7 +11,7 @@ struct Series {
     var id: String
     var rating: String
     var name: String
-    var image: Picture
+    var image: Poster
     var schedule: Schedule
     var genres: [String]
     var summary: String
