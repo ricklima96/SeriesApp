@@ -23,7 +23,7 @@ Observations:
 
 * Dependency Injection using Swinject was scrapped because some issues with Protocols inheriting ObservableObject came up and the lack of time resulted in this decision.
 
-* In the middle of the development process all data-related functions with completion handlers were migrated to use async/await, a wise decision, resulting in a cleaner and more efficient code. (no need to make sure to call every completion nor issues with retain cycles) You can see the full migration by at the commit history.
+* In the middle of the development process all data-related functions with completion handlers were migrated to use async/await, a wise decision, resulting in a cleaner and more efficient code. (no need to make sure to call every completion nor issues with retain cycles) You can see the full migration in the commit history.
 
 * `myString.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)` is a neat short line of code to remove all HTML tags from text.
 
