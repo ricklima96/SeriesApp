@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SearchSeriesView: View {
     @StateObject var viewModel: SearchSeriesViewModel
-    
+
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {

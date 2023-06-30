@@ -11,9 +11,16 @@ protocol GetAllEpisodesUseCaseProtocol {
     func getAllEpisodes(id: String) async throws -> [Episode]
 }
 
-class GetAllEpisodesUseCase: GetAllEpisodesUseCaseProtocol {
+final class GetAllEpisodesUseCase: GetAllEpisodesUseCaseProtocol {
+    
+    private var seriesService: SeriesServiceProtocol
+    
+    init(seriesService: SeriesServiceProtocol = SeriesService()) {
+        self.seriesService = seriesService
+    }
+    
     func getAllEpisodes(id: String) async throws -> [Episode] {
-        let episodeResponse = try await SeriesService.shared.fetchAllEpisodes(id: id)
+        let episodeResponse = try await seriesService.fetchAllEpisodes(id: id)
         
         return episodeResponse.map {
             Episode(id: String($0.id),

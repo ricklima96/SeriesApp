@@ -11,10 +11,11 @@ protocol SeriesDetailsViewModelProtocol {
     func fetchEpisodes(id: String) async
 }
 
-class SeriesDetailsViewModel: ObservableObject, SeriesDetailsViewModelProtocol {
+final class SeriesDetailsViewModel: ObservableObject, SeriesDetailsViewModelProtocol {
     @Published var state: ResponseState = .idle
     @Published var episodesList: [Episode] = []
-    private var getAllEpisodesUseCase: GetAllEpisodesUseCaseProtocol
+    
+    private let getAllEpisodesUseCase: GetAllEpisodesUseCaseProtocol
     
     init(getAllEpisodesUseCase: GetAllEpisodesUseCaseProtocol = GetAllEpisodesUseCase()) {
         self.getAllEpisodesUseCase = getAllEpisodesUseCase

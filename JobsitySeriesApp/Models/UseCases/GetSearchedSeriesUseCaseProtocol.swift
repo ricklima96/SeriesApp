@@ -11,9 +11,16 @@ protocol GetSearchedSeriesUseCaseProtocol {
     func getSearchedSeries(query: String) async throws -> [Series]
 }
 
-class GetSearchedSeriesUseCase: GetSearchedSeriesUseCaseProtocol {
+final class GetSearchedSeriesUseCase: GetSearchedSeriesUseCaseProtocol {
+    
+    private var seriesService: SeriesServiceProtocol
+    
+    init(seriesService: SeriesServiceProtocol = SeriesService()) {
+        self.seriesService = seriesService
+    }
+    
     func getSearchedSeries(query: String) async throws -> [Series] {
-        let seriesResponse = try await SeriesService.shared.fetchSearchedSeries(query: query)
+        let seriesResponse = try await seriesService.fetchSearchedSeries(query: query)
         
         return seriesResponse.map {
             Series(id: String($0.show.id),

@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct JobsitySeriesApp: App {
+        
     var body: some Scene {
         WindowGroup {
             TabView {

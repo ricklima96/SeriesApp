@@ -19,11 +19,12 @@ protocol SeriesListViewModelProtocol {
     func fetchSeriesNextPage() async
 }
 
-class SeriesListViewModel: ObservableObject, SeriesListViewModelProtocol {
+final class SeriesListViewModel: ObservableObject, SeriesListViewModelProtocol {
     @Published var state: ResponseState = .idle
     @Published var seriesList: [Series] = []
+    
     private var page = 0
-    private var getAllSeriesUseCase: GetAllSeriesUseCaseProtocol
+    private let getAllSeriesUseCase: GetAllSeriesUseCaseProtocol
     
     init(getAllSeriesUseCase: GetAllSeriesUseCaseProtocol = GetAllSeriesUseCase()) {
         self.getAllSeriesUseCase = getAllSeriesUseCase

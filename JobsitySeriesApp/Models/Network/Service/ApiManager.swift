@@ -9,6 +9,7 @@ import Foundation
 
 enum NetworkError: Error {
     case dataRequestError(String)
+    case badUrl(String)
 }
 
 struct ApiManager {
@@ -19,7 +20,7 @@ struct ApiManager {
             let (data, _) = try await URLSession.shared.data(for: urlRequest)
             return try JSONDecoder().decode(T.self, from: data)
         } catch {
-            throw NetworkError.dataRequestError("bad request")
+            throw NetworkError.dataRequestError("error from API call.")
         }
     }
 }

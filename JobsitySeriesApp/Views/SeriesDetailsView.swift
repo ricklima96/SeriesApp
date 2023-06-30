@@ -51,7 +51,9 @@ struct SeriesDetailsView: View {
                         Text(series.summary)
                     }
                     EpisodeListView(viewModel: viewModel)
-                }.padding(.horizontal, 16)
+                        .padding(.bottom, 8)
+                }
+                .padding(.horizontal, 16)
             }
             .task {
                await viewModel.fetchEpisodes(id: series.id)

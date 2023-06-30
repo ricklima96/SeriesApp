@@ -7,16 +7,16 @@
 
 import Foundation
 
-protocol SearchViewModelProtocol {
+protocol SearchSeriesViewModelProtocol {
     func fetchSearchedSerie(query: String) async
 }
 
-class SearchSeriesViewModel: ObservableObject, SearchViewModelProtocol {
-    
+final class SearchSeriesViewModel: ObservableObject, SearchSeriesViewModelProtocol {
     @Published var state: ResponseState = .idle
     @Published var seriesList: [Series] = []
     @Published var query: String = ""
-    private var getSearchedSeriesUseCase: GetSearchedSeriesUseCaseProtocol
+    
+    private let getSearchedSeriesUseCase: GetSearchedSeriesUseCaseProtocol
     
     init(getSearchedSeriesUseCase: GetSearchedSeriesUseCaseProtocol = GetSearchedSeriesUseCase()) {
         self.getSearchedSeriesUseCase = getSearchedSeriesUseCase
