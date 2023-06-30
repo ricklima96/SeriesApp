@@ -1,7 +1,7 @@
 # JobsitySeriesApp
 iOS application that lists TV series using the [TVMaze API](https://www.tvmaze.com/api).
 
-To run the app, download this repository and run it on Xcode.
+To run the app, download this repository and open it on Xcode.
 
 * This project is implemented using MVVM architecture pattern.
 * The Model layer contains any necessary data or business logic needed to get all the shows and their information.
