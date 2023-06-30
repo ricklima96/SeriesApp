@@ -10,43 +10,19 @@ import Foundation
 struct SeriesService {
     public static let shared = SeriesService()
     
-    func fetchAllSeries(page: Int, completionHandler: @escaping (Result<[SeriesResponse], Error>) -> Void) {
+    func fetchAllSeries(page: Int) async throws -> [SeriesResponse] {
         let urlRequest = buildRequest(with: SeriesRequest(page: page))
-        
-        ApiManager.shared.callApi(ofType: [SeriesResponse].self, urlRequest: urlRequest) { response in
-            switch response {
-            case .success(let data):
-                completionHandler(.success(data))
-            case .failure(let error):
-                completionHandler(.failure(error))
-            }
-        }
+        return try await ApiManager.shared.callApi(ofType: [SeriesResponse].self, urlRequest: urlRequest)
     }
     
-    func fetchSearchedSeries(query: String, completionHandler: @escaping (Result<[SearchSeriesResponse], Error>) -> Void) {
+    func fetchSearchedSeries(query: String) async throws -> [SearchSeriesResponse] {
         let urlRequest = buildRequest(with: SearchSeriesRequest(query: query))
-
-        ApiManager.shared.callApi(ofType: [SearchSeriesResponse].self, urlRequest: urlRequest) { response in
-            switch response {
-            case .success(let data):
-                completionHandler(.success(data))
-            case .failure(let error):
-                completionHandler(.failure(error))
-            }
-        }
+        return try await ApiManager.shared.callApi(ofType: [SearchSeriesResponse].self, urlRequest: urlRequest)
     }
     
-    func fetchAllEpisodes(id: String, completionHandler: @escaping (Result<[EpisodeResponse], Error>) -> Void) {
+    func fetchAllEpisodes(id: String) async throws -> [EpisodeResponse] {
         let urlRequest = buildRequest(with: EpisodeRequest(id: id))
-        
-        ApiManager.shared.callApi(ofType: [EpisodeResponse].self, urlRequest: urlRequest) { response in
-            switch response {
-            case .success(let data):
-                completionHandler(.success(data))
-            case .failure(let error):
-                completionHandler(.failure(error))
-            }
-        }
+        return try await ApiManager.shared.callApi(ofType: [EpisodeResponse].self, urlRequest: urlRequest)
     }
     
     func buildRequest(with requestModel: RequestProtocol) -> URLRequest {

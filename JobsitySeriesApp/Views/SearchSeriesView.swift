@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct SearchSeriesView: View {
-    @StateObject var viewModel: SearchViewModel
-
+    @StateObject var viewModel: SearchSeriesViewModel
+    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -42,8 +42,8 @@ struct SearchSeriesView: View {
 }
 
 struct SearchBarView: View {
-    @StateObject var viewModel: SearchViewModel
-
+    @StateObject var viewModel: SearchSeriesViewModel
+    
     var body: some View {
         TextField("Search for series...", text: $viewModel.query)
             .padding(7)
@@ -52,18 +52,20 @@ struct SearchBarView: View {
             .cornerRadius(8)
             .padding(.horizontal, 10)
             .onChange(of: viewModel.query, perform: { query in
-                viewModel.fetchSearchedSerie(query: query)
+                Task {
+                    await viewModel.fetchSearchedSerie(query: viewModel.query)
+                }
             })
     }
 }
 
 struct SearchViewContainer: View {
-    @StateObject var viewModel: SearchViewModel
+    @StateObject var viewModel: SearchSeriesViewModel
     
     var body: some View {
         ScrollView {
             LazyVStack (alignment: .leading) {
-                ForEach(viewModel.series, id: \.id) { series in
+                ForEach(viewModel.seriesList, id: \.id) { series in
                     NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(), series: series)) {
                         VStack {
                             SerieCellView(series: series)
@@ -79,6 +81,6 @@ struct SearchViewContainer: View {
 
 struct SearchSeriesView_Previews: PreviewProvider {
     static var previews: some View {
-        SearchSeriesView(viewModel: SearchViewModel())
+        SearchSeriesView(viewModel: SearchSeriesViewModel())
     }
 }

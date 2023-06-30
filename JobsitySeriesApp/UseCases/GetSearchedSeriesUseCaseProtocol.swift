@@ -8,28 +8,21 @@
 import Foundation
 
 protocol GetSearchedSeriesUseCaseProtocol {
-    func getSearchedSeries(query: String, completionHandler: @escaping (Result<[Series], Error>) -> Void)
+    func getSearchedSeries(query: String) async throws -> [Series]
 }
 
 class GetSearchedSeriesUseCase: GetSearchedSeriesUseCaseProtocol {
-    func getSearchedSeries(query: String, completionHandler: @escaping (Result<[Series], Error>) -> Void) {
+    func getSearchedSeries(query: String) async throws -> [Series] {
+        let seriesResponse = try await SeriesService.shared.fetchSearchedSeries(query: query)
         
-        SeriesService.shared.fetchSearchedSeries(query: query) { result in
-            switch result {
-            case .success(let searchResponse):
-                let series = searchResponse.map {
-                    Series(id: String($0.show.id),
-                           rating: Helper.checkEmptyRating(rating: $0.show.rating?.average),
-                           name: $0.show.name,
-                           image: Poster(imageUrl: $0.show.image?.medium),
-                           schedule: Helper.checkEmptySchedules(schedule: $0.show.schedule),
-                           genres: Helper.checkEmptyGenres(genres: $0.show.genres),
-                           summary: $0.show.summary?.removeHtmlTags() ?? "-")
-                }
-                completionHandler(.success(series))
-            case .failure(let error):
-                completionHandler(.failure(error))
-            }
+        return seriesResponse.map {
+            Series(id: String($0.show.id),
+                   rating: Helper.checkEmptyRating(rating: $0.show.rating?.average),
+                   name: $0.show.name,
+                   image: Poster(imageUrl: $0.show.image?.medium),
+                   schedule: Helper.checkEmptySchedules(schedule: $0.show.schedule),
+                   genres: Helper.checkEmptyGenres(genres: $0.show.genres),
+                   summary: $0.show.summary?.removeHtmlTags() ?? "-")
         }
     }
 }

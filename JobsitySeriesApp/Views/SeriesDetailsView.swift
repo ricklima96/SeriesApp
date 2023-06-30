@@ -52,8 +52,9 @@ struct SeriesDetailsView: View {
                     }
                     EpisodeListView(viewModel: viewModel)
                 }.padding(.horizontal, 16)
-            }.onAppear() {
-                viewModel.fetchEpisodes(id: series.id)
+            }
+            .task {
+               await viewModel.fetchEpisodes(id: series.id)
             }
         }
     }

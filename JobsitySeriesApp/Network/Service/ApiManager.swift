@@ -7,25 +7,19 @@
 
 import Foundation
 
+enum NetworkError: Error {
+    case dataRequestError(String)
+}
+
 struct ApiManager {
     public static let shared = ApiManager()
     
-    func callApi<T: Decodable>(ofType: T.Type, urlRequest: URLRequest, completionHandler: @escaping (Result<T, Error>) -> Void) {
-        URLSession.shared.dataTask(with: urlRequest) { data, response, error in
-            guard let data = data else {
-                completionHandler(.failure(error!))
-                return
-            }
-            
-            do {
-                let decodedResponse = try JSONDecoder().decode(T.self, from: data)
-                DispatchQueue.main.async {
-                    completionHandler(.success(decodedResponse))
-                }
-                return
-            } catch {
-                print(error)
-            }
-        }.resume()
+    func callApi<T: Decodable>(ofType: T.Type, urlRequest: URLRequest) async throws -> T {
+        do {
+            let (data, _) = try await URLSession.shared.data(for: urlRequest)
+            return try JSONDecoder().decode(T.self, from: data)
+        } catch {
+            throw NetworkError.dataRequestError("bad request")
+        }
     }
 }

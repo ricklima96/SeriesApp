@@ -8,7 +8,7 @@
 import Foundation
 
 protocol SeriesDetailsViewModelProtocol {
-    func fetchEpisodes(id: String)
+    func fetchEpisodes(id: String) async
 }
 
 class SeriesDetailsViewModel: ObservableObject, SeriesDetailsViewModelProtocol {
@@ -20,18 +20,19 @@ class SeriesDetailsViewModel: ObservableObject, SeriesDetailsViewModelProtocol {
         self.getAllEpisodesUseCase = getAllEpisodesUseCase
     }
     
-    func fetchEpisodes(id: String) {
-        state = .loading
-        getAllEpisodesUseCase.getAllEpisodes(id: id) { result in
-            switch result {
-            case .success(let episodesList):
+    @MainActor
+    func fetchEpisodes(id: String) async {
+        if state != .loaded {
+            state = .loading
+            do {
+                episodesList = try await getAllEpisodesUseCase.getAllEpisodes(id: id)
                 if episodesList.count > 0 {
                     self.episodesList = episodesList
                     self.state = .loaded
                     return
                 }
                 self.state = .error
-            case .failure(let error):
+            } catch {
                 print(error)
                 self.state = .error
             }

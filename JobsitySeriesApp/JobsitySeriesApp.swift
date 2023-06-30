@@ -16,7 +16,7 @@ struct JobsitySeriesApp: App {
                     .tabItem {
                         Label("", systemImage: "sparkles.tv")
                     }
-                SearchSeriesView(viewModel: SearchViewModel())
+                SearchSeriesView(viewModel: SearchSeriesViewModel())
                     .tabItem {
                         Label("", systemImage: "sparkle.magnifyingglass")
                     }

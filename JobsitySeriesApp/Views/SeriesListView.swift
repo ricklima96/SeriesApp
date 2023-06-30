@@ -22,8 +22,9 @@ struct SeriesListView: View {
                 case .error:
                     SeriesErrorView(viewModel: viewModel)
                 }
-            }.onAppear() {
-                viewModel.fetchSeries()
+            }
+            .task {
+                await viewModel.fetchSeries()
             }
         }
     }
@@ -42,9 +43,9 @@ struct SeriesViewContainer: View {
                     ForEach(viewModel.seriesList, id: \.id) { series in
                         NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(), series: series)) {
                             SerieCellView(series: series)
-                                .onAppear() {
+                                .task {
                                     if viewModel.recheadEndOfPage(series: series) {
-                                        viewModel.fetchSeriesNextPage()
+                                        await viewModel.fetchSeriesNextPage()
                                     }
                                 }
                         }
@@ -79,7 +80,9 @@ struct SeriesErrorView: View {
         VStack (spacing: 16) {
             Text("Sorry, something went wrong.")
             Button {
-                viewModel.fetchSeries()
+                Task {
+                    await viewModel.fetchSeries()
+                }
             } label: {
                 Text("try again")
             }

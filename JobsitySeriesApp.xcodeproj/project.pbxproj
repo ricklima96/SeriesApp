@@ -11,7 +11,7 @@
 		353CECEC2A4B8D07003CC18B /* EpisodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353CECEB2A4B8D07003CC18B /* EpisodeResponse.swift */; };
 		353CECF52A4B8EF7003CC18B /* SearchSeriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353CECF42A4B8EF7003CC18B /* SearchSeriesResponse.swift */; };
 		353CECF72A4B9010003CC18B /* SeriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353CECF62A4B9010003CC18B /* SeriesListView.swift */; };
-		353CECF92A4B9037003CC18B /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353CECF82A4B9037003CC18B /* SearchViewModel.swift */; };
+		353CECF92A4B9037003CC18B /* SearchSeriesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353CECF82A4B9037003CC18B /* SearchSeriesViewModel.swift */; };
 		353CECFB2A4B903F003CC18B /* SearchSeriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353CECFA2A4B903F003CC18B /* SearchSeriesView.swift */; };
 		3557E0A62A4B795800D49A3F /* SeriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3557E0A52A4B795800D49A3F /* SeriesResponse.swift */; };
 		3557E0AA2A4B7BBC00D49A3F /* SeriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3557E0A92A4B7BBC00D49A3F /* SeriesService.swift */; };
@@ -60,7 +60,7 @@
 		353CECEB2A4B8D07003CC18B /* EpisodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeResponse.swift; sourceTree = "<group>"; };
 		353CECF42A4B8EF7003CC18B /* SearchSeriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSeriesResponse.swift; sourceTree = "<group>"; };
 		353CECF62A4B9010003CC18B /* SeriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesListView.swift; sourceTree = "<group>"; };
-		353CECF82A4B9037003CC18B /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		353CECF82A4B9037003CC18B /* SearchSeriesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSeriesViewModel.swift; sourceTree = "<group>"; };
 		353CECFA2A4B903F003CC18B /* SearchSeriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSeriesView.swift; sourceTree = "<group>"; };
 		3557E0A52A4B795800D49A3F /* SeriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesResponse.swift; sourceTree = "<group>"; };
 		3557E0A92A4B7BBC00D49A3F /* SeriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesService.swift; sourceTree = "<group>"; };
@@ -202,11 +202,11 @@
 		356F5C902A4B60370042EF4B /* JobsitySeriesApp */ = {
 			isa = PBXGroup;
 			children = (
-				353CECED2A4B8E59003CC18B /* Network */,
-				35F54C072A4DC19C00AAFDBF /* Utils */,
-				35654A942A4BC2A000925D72 /* UseCases */,
 				356F5C912A4B60370042EF4B /* JobsitySeriesApp.swift */,
+				353CECED2A4B8E59003CC18B /* Network */,
+				35654A942A4BC2A000925D72 /* UseCases */,
 				3557E0A42A4B786200D49A3F /* Views */,
+				35F54C072A4DC19C00AAFDBF /* Utils */,
 				356F5C952A4B60390042EF4B /* Assets.xcassets */,
 				356F5C972A4B60390042EF4B /* Preview Content */,
 			);
@@ -252,7 +252,7 @@
 			children = (
 				35F54C0A2A4DC29100AAFDBF /* SeriesDetailsViewModel.swift */,
 				353CECE92A4B7D77003CC18B /* SeriesListViewModel.swift */,
-				353CECF82A4B9037003CC18B /* SearchViewModel.swift */,
+				353CECF82A4B9037003CC18B /* SearchSeriesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -404,7 +404,7 @@
 				35654A9C2A4CA5AF00925D72 /* GetSearchedSeriesUseCaseProtocol.swift in Sources */,
 				3585BEBF2A4F1B3E00CDD8D7 /* EpisodeRequest.swift in Sources */,
 				35F54C102A4DC9CB00AAFDBF /* Episode.swift in Sources */,
-				353CECF92A4B9037003CC18B /* SearchViewModel.swift in Sources */,
+				353CECF92A4B9037003CC18B /* SearchSeriesViewModel.swift in Sources */,
 				3585BEBB2A4E30B400CDD8D7 /* Poster.swift in Sources */,
 				35654A9A2A4C678900925D72 /* ApiManager.swift in Sources */,
 				35F54C0E2A4DC81600AAFDBF /* GetAllEpisodesUseCaseProtocol.swift in Sources */,
