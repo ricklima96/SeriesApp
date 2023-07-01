@@ -26,7 +26,7 @@ Observations:
 
 * In the middle of the development process all data-related functions with completion handlers were migrated to use async/await, a wise decision, resulting in a cleaner and more efficient code. (no need to make sure to call every completion nor issues with retain cycles) You can see the full migration in the commit history.
 
-* The Bookmarks feature was built using Realm. This choice was made because I found adding CoreData to SwiftUI a bit too complex for a simple project (way easier with UIKit), and as SwiftData is not available beside iOS 17 beta, Realm was a good solution.
+* The Bookmarks feature was built using Realm database. This choice was made because I found adding CoreData to SwiftUI a bit too complex for a simple project (way easier with UIKit), and as SwiftData is not available beside iOS 17 beta, Realm was a good solution.
 
 * `myString.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)` is a neat short line of code to remove all HTML tags from text.
 
