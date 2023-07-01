@@ -28,5 +28,7 @@ Observations:
 
 * The Bookmarks feature was built using Realm database. This choice was made because I found adding CoreData to SwiftUI a bit too complex for a simple project (way easier with UIKit), and as SwiftData is not available beside iOS 17 beta, Realm was a pratical solution.
 
+* The project also contains SwiftLint to ensure code styling, convetions and good practises
+
 * `myString.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)` is a neat short line of code to remove all HTML tags from text.
 
