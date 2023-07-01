@@ -43,7 +43,7 @@ struct SearchSeriesView: View {
 
 struct SearchBarView: View {
     @StateObject var viewModel: SearchSeriesViewModel
-    
+
     var body: some View {
         TextField("Search for series...", text: $viewModel.query)
             .padding(7)
@@ -51,22 +51,20 @@ struct SearchBarView: View {
             .background(Color(.systemGray6))
             .cornerRadius(8)
             .padding(.horizontal, 10)
-            .onChange(of: viewModel.query, perform: { query in
-                Task {
-                    await viewModel.fetchSearchedSerie(query: viewModel.query)
-                }
+            .onChange(of: viewModel.query, perform: { _ in
+                Task { await viewModel.fetchSearchedSerie(query: viewModel.query) }
             })
     }
 }
 
 struct SearchViewContainer: View {
     @StateObject var viewModel: SearchSeriesViewModel
-    
+
     var body: some View {
         ScrollView {
-            LazyVStack (alignment: .leading) {
+            LazyVStack(alignment: .leading) {
                 ForEach(viewModel.seriesList, id: \.id) { series in
-                    NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(), series: series)) {
+                   NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(), series: series)) {
                         VStack {
                             SerieCellView(series: series)
                             Divider()

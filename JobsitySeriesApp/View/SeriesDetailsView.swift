@@ -8,12 +8,11 @@
 import SwiftUI
 import RealmSwift
 
-
 struct SeriesDetailsView: View {
-    
+
     @StateObject var viewModel: SeriesDetailsViewModel
     var series: Series
-    
+
     var body: some View {
         ScrollView {
             SeriesDetailsHeaderView(series: series)
@@ -31,7 +30,7 @@ struct SeriesDetailsView: View {
                     }
                     HStack {
                         Text("schedule:").font(.title3).bold()
-                        ForEach (series.schedule.days, id: \.self) { day in
+                        ForEach(series.schedule.days, id: \.self) { day in
                             Text(day.lowercased())
                         }
                         Text("|")
@@ -39,7 +38,7 @@ struct SeriesDetailsView: View {
                     }
                     HStack {
                         Text("genres:").font(.title3).bold()
-                        ForEach (series.genres, id: \.self) { genre in
+                        ForEach(series.genres, id: \.self) { genre in
                             if genre != series.genres.last {
                                 Text(genre.lowercased() + " |")
                             } else {
@@ -47,7 +46,7 @@ struct SeriesDetailsView: View {
                             }
                         }
                     }
-                    HStack (alignment: .top) {
+                    HStack(alignment: .top) {
                         Text("summary:").font(.title3).bold()
                         Text(series.summary)
                     }
@@ -67,7 +66,7 @@ struct SeriesDetailsHeaderView: View {
     @Environment(\.realm) var realm
     @State var alreadyBookmarked: Bool = false
     var series: Series
-    
+
     var body: some View {
         HStack {
             let bookmarkedSeries = Helper.convertSeriesToBookmakedSeries(series)
@@ -78,24 +77,23 @@ struct SeriesDetailsHeaderView: View {
                         realm.add(bookmarkedSeries, update: .all)
                         alreadyBookmarked = true
                 }
-            }) {
+            }, label: {
                 Image(alreadyBookmarked ? "bookmark.fill" : "bookmark")
                     .resizable()
                     .frame(width: 30, height: 40)
-            }
+            })
         }
         .padding(.horizontal, 16)
         .padding(.top, 20)
-        .onAppear() {
+        .onAppear {
             alreadyBookmarked = realm.object(ofType: BookmarkedSeries.self, forPrimaryKey: series.id) != nil
         }
     }
 }
 
-
 struct EpisodeListView: View {
     @StateObject var viewModel: SeriesDetailsViewModel
-    
+
     var body: some View {
         Text("Episodes").font(.title).padding(.top, 16)
         switch viewModel.state {
@@ -113,7 +111,7 @@ struct EpisodeListView: View {
 
 struct EpisodeCellView: View {
     var episode: Episode
-    
+
     var body: some View {
         NavigationLink(destination: EpisodeDetailsView(episode: episode)) {
             HStack {
@@ -126,7 +124,12 @@ struct EpisodeCellView: View {
 
 struct SeriesDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        SeriesDetailsView(viewModel: SeriesDetailsViewModel(), series: Series(id: "1", rating: "9.5", name: "The Dome", image: Poster(imageUrl: "https://static.tvmaze.com/uploads/images/medium_portrait/81/202627.jpg"), schedule: Helper.checkEmptySchedules(schedule: ScheduleResponse(time: "20:00", days: ["fridays"])), genres: Helper.checkEmptyGenres(genres: ["dark comedy"]), summary: "Lorem ipsum dolor sit amet"))
+        SeriesDetailsView(viewModel: SeriesDetailsViewModel(),
+                          series: Series(id: "1", rating: "9.5",
+                                       name: "The Dome", image: Poster(imageUrl: ""),
+                                       schedule: Helper.formatSchedules(schedule: ScheduleResponse(time: "-",
+                                                                                           days: ["-"])),
+                                       genres: Helper.formatGenres(genres: ["-"]),
+                                       summary: "Lorem ipsum dolor sit amet"))
     }
 }
-

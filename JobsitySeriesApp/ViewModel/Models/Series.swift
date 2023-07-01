@@ -21,8 +21,7 @@ struct Poster {
     var imageUrl: String
 }
 
-struct Schedule  {
+struct Schedule {
     var time: String
     var days: [String]
 }
-

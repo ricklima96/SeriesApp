@@ -12,5 +12,5 @@ struct SearchSeriesRequest: RequestProtocol {
     var url: String { return "https://api.tvmaze.com" }
     var path: String { return "/search/shows" }
     var method: String { return "GET" }
-    var queryParameters: [String : String]? { return ["q": self.query] }
+    var queryParameters: [String: String]? { return ["q": self.query] }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EpisodeDetailsView: View {
     let episode: Episode
-    
+
     var body: some View {
         VStack(alignment: .center) {
             Text(episode.name).font(.largeTitle).padding(.horizontal, 16)
@@ -31,7 +31,8 @@ struct EpisodeDetailsView: View {
 
 struct EpisodeDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        EpisodeDetailsView(episode: Episode(id: "1", name: "Ozymandias", number: "1", season: "2", summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", image: Poster(imageUrl: "https://static.tvmaze.com/uploads/images/medium_portrait/81/202627.jpg")))
+        EpisodeDetailsView(episode: Episode(id: "1", name: "Ozymandias", number: "1",
+                                       season: "2", summary: "Lorem ipsum dolor sit.",
+                                       image: Poster(imageUrl: "")))
     }
 }
-

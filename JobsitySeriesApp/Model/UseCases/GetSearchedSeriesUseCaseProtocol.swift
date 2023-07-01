@@ -12,24 +12,24 @@ protocol GetSearchedSeriesUseCaseProtocol {
 }
 
 final class GetSearchedSeriesUseCase: GetSearchedSeriesUseCaseProtocol {
-    
+
     private var seriesService: SeriesServiceProtocol
-    
+
     init(seriesService: SeriesServiceProtocol = SeriesService()) {
         self.seriesService = seriesService
     }
-    
+
     func getSearchedSeries(query: String) async throws -> [Series] {
         let seriesResponse = try await seriesService.fetchSearchedSeries(query: query)
-        
+
         return seriesResponse.map {
             Series(id: String($0.show.id),
-                   rating: Helper.checkEmptyRating(rating: $0.show.rating?.average),
+                   rating: Helper.formatRating(rating: $0.show.rating?.average),
                    name: $0.show.name,
                    image: Poster(imageUrl: $0.show.image?.medium ?? ""),
-                   schedule: Helper.checkEmptySchedules(schedule: $0.show.schedule),
-                   genres: Helper.checkEmptyGenres(genres: $0.show.genres),
-                   summary: $0.show.summary?.removeHtmlTags() ?? "-")
+                   schedule: Helper.formatSchedules(schedule: $0.show.schedule),
+                   genres: Helper.formatGenres(genres: $0.show.genres),
+                   summary: Helper.removeHtmlTags(string: $0.show.summary))
         }
     }
 }

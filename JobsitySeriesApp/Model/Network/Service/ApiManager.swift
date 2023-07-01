@@ -14,7 +14,7 @@ enum NetworkError: Error {
 
 struct ApiManager {
     public static let shared = ApiManager()
-    
+
     func callApi<T: Decodable>(ofType: T.Type, urlRequest: URLRequest) async throws -> T {
         do {
             let (data, _) = try await URLSession.shared.data(for: urlRequest)

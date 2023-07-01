@@ -11,7 +11,7 @@ import RealmSwift
 struct BookmarksView: View {
     @ObservedResults(BookmarkedSeries.self)
     var bookmarkedSeriesList
-    
+
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -25,7 +25,8 @@ struct BookmarksView: View {
                     List {
                         ForEach(bookmarkedSeriesList, id: \.id) { bookmarkedSeries in
                             let series = Helper.convertBookmarkedSeriesToSeries(bookmarkedSeries)
-                            NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(), series: series)) {
+                            NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(),
+                                                                          series: series)) {
                                 SerieCellView(series: series)
                             }
                             .buttonStyle(.plain)
@@ -39,9 +40,7 @@ struct BookmarksView: View {
                 }
             }
         }
-        
     }
-    
 }
 
 struct BookmarksView_Previews: PreviewProvider {

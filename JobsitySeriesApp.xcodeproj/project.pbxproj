@@ -34,7 +34,6 @@
 		35B0D6DF2A50544600D8BD7F /* BookmarkedSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B0D6DE2A50544600D8BD7F /* BookmarkedSeries.swift */; };
 		35F052112A4E15EA0036D1AE /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F052102A4E15EA0036D1AE /* Helper.swift */; };
 		35F54C042A4DBB3C00AAFDBF /* SeriesDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F54C032A4DBB3C00AAFDBF /* SeriesDetailsView.swift */; };
-		35F54C092A4DC1A800AAFDBF /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F54C082A4DC1A800AAFDBF /* String.swift */; };
 		35F54C0B2A4DC29100AAFDBF /* SeriesDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F54C0A2A4DC29100AAFDBF /* SeriesDetailsViewModel.swift */; };
 		35F54C0E2A4DC81600AAFDBF /* GetAllEpisodesUseCaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F54C0D2A4DC81600AAFDBF /* GetAllEpisodesUseCaseProtocol.swift */; };
 		35F54C102A4DC9CB00AAFDBF /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F54C0F2A4DC9CB00AAFDBF /* Episode.swift */; };
@@ -87,7 +86,6 @@
 		35B0D6DE2A50544600D8BD7F /* BookmarkedSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkedSeries.swift; sourceTree = "<group>"; };
 		35F052102A4E15EA0036D1AE /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		35F54C032A4DBB3C00AAFDBF /* SeriesDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailsView.swift; sourceTree = "<group>"; };
-		35F54C082A4DC1A800AAFDBF /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		35F54C0A2A4DC29100AAFDBF /* SeriesDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailsViewModel.swift; sourceTree = "<group>"; };
 		35F54C0D2A4DC81600AAFDBF /* GetAllEpisodesUseCaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllEpisodesUseCaseProtocol.swift; sourceTree = "<group>"; };
 		35F54C0F2A4DC9CB00AAFDBF /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
@@ -124,6 +122,7 @@
 		353CECED2A4B8E59003CC18B /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				359B68922A507F2300146D71 /* DataModels */,
 				3557E0A32A4B785D00D49A3F /* Service */,
 			);
 			path = Network;
@@ -134,12 +133,6 @@
 			children = (
 				35654A942A4BC2A000925D72 /* UseCases */,
 				353CECED2A4B8E59003CC18B /* Network */,
-				3585BEBE2A4F1B3E00CDD8D7 /* EpisodeRequest.swift */,
-				353CECEB2A4B8D07003CC18B /* EpisodeResponse.swift */,
-				3585BEBC2A4F0E9900CDD8D7 /* SeriesListRequest.swift */,
-				3557E0A52A4B795800D49A3F /* SeriesResponse.swift */,
-				3585BEC02A4F1D5400CDD8D7 /* SearchSeriesRequest.swift */,
-				353CECF42A4B8EF7003CC18B /* SearchSeriesResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -260,10 +253,22 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		359B68922A507F2300146D71 /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				3585BEBE2A4F1B3E00CDD8D7 /* EpisodeRequest.swift */,
+				353CECEB2A4B8D07003CC18B /* EpisodeResponse.swift */,
+				3585BEBC2A4F0E9900CDD8D7 /* SeriesListRequest.swift */,
+				3557E0A52A4B795800D49A3F /* SeriesResponse.swift */,
+				3585BEC02A4F1D5400CDD8D7 /* SearchSeriesRequest.swift */,
+				353CECF42A4B8EF7003CC18B /* SearchSeriesResponse.swift */,
+			);
+			path = DataModels;
+			sourceTree = "<group>";
+		};
 		35F54C072A4DC19C00AAFDBF /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				35F54C082A4DC1A800AAFDBF /* String.swift */,
 				35F052102A4E15EA0036D1AE /* Helper.swift */,
 			);
 			path = Utils;
@@ -272,10 +277,10 @@
 		35F54C0C2A4DC29700AAFDBF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				35654A932A4BC25200925D72 /* Models */,
 				35F54C0A2A4DC29100AAFDBF /* SeriesDetailsViewModel.swift */,
 				353CECE92A4B7D77003CC18B /* SeriesListViewModel.swift */,
 				353CECF82A4B9037003CC18B /* SearchSeriesViewModel.swift */,
+				35654A932A4BC25200925D72 /* Models */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				359B68952A50836800146D71 /* PBXTargetDependency */,
 			);
 			name = JobsitySeriesApp;
 			packageProductDependencies = (
@@ -374,6 +380,7 @@
 			mainGroup = 356F5C852A4B60370042EF4B;
 			packageReferences = (
 				359351E82A4FE21900449453 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				359B68932A50835500146D71 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = 356F5C8F2A4B60370042EF4B /* Products */;
 			projectDirPath = "";
@@ -437,7 +444,6 @@
 				35654A962A4BC2BA00925D72 /* GetAllSeriesUseCaseProtocol.swift in Sources */,
 				3557E0AA2A4B7BBC00D49A3F /* SeriesService.swift in Sources */,
 				3557E0A62A4B795800D49A3F /* SeriesResponse.swift in Sources */,
-				35F54C092A4DC1A800AAFDBF /* String.swift in Sources */,
 				35F54C042A4DBB3C00AAFDBF /* SeriesDetailsView.swift in Sources */,
 				359351C82A4FAF1500449453 /* BookmarksView.swift in Sources */,
 				356F5C922A4B60370042EF4B /* JobsitySeriesApp.swift in Sources */,
@@ -474,6 +480,10 @@
 			isa = PBXTargetDependency;
 			target = 356F5C8D2A4B60370042EF4B /* JobsitySeriesApp */;
 			targetProxy = 356F5CA92A4B60390042EF4B /* PBXContainerItemProxy */;
+		};
+		359B68952A50836800146D71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 359B68942A50836800146D71 /* SwiftLintPlugin */;
 		};
 /* End PBXTargetDependency section */
 
@@ -789,6 +799,14 @@
 				kind = branch;
 			};
 		};
+		359B68932A50835500146D71 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.52.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -801,6 +819,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 359351E82A4FE21900449453 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		359B68942A50836800146D71 /* SwiftLintPlugin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 359B68932A50835500146D71 /* XCRemoteSwiftPackageReference "SwiftLint" */;
+			productName = "plugin:SwiftLintPlugin";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

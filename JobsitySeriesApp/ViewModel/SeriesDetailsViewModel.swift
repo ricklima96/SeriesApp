@@ -14,13 +14,13 @@ protocol SeriesDetailsViewModelProtocol {
 final class SeriesDetailsViewModel: ObservableObject, SeriesDetailsViewModelProtocol {
     @Published var state: ResponseState = .idle
     @Published var episodesList: [Episode] = []
-    
+
     private let getAllEpisodesUseCase: GetAllEpisodesUseCaseProtocol
-    
+
     init(getAllEpisodesUseCase: GetAllEpisodesUseCaseProtocol = GetAllEpisodesUseCase()) {
         self.getAllEpisodesUseCase = getAllEpisodesUseCase
     }
-    
+
     @MainActor
     func fetchEpisodes(id: String) async {
         if state != .loaded {

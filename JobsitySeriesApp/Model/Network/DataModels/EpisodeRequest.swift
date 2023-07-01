@@ -12,5 +12,5 @@ struct EpisodeRequest: RequestProtocol {
     var url: String { return "https://api.tvmaze.com" }
     var path: String { return "/shows/\(id)/episodes" }
     var method: String { return "GET" }
-    var queryParameters: [String : String]? { return nil }
+    var queryParameters: [String: String]? { return nil }
 }

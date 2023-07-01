@@ -9,8 +9,11 @@ import Foundation
 import RealmSwift
 
 class BookmarkedSeries: Object, ObjectKeyIdentifiable {
-    
-    convenience init(seriesId: String, rating: String, name: String, genres: List<String>, summary: String, imageUrl: String, time: String, days: List<String>) {
+
+    convenience init(seriesId: String, rating: String,
+                     name: String, genres: List<String>,
+                     summary: String, imageUrl: String,
+                     time: String, days: List<String>) {
         self.init()
         self.seriesId = seriesId
         self.rating = rating
@@ -21,7 +24,7 @@ class BookmarkedSeries: Object, ObjectKeyIdentifiable {
         self.time = time
         self.days = days
     }
-    
+
     @Persisted(primaryKey: true) var seriesId: String
     @Persisted var rating: String
     @Persisted var name: String
@@ -31,4 +34,3 @@ class BookmarkedSeries: Object, ObjectKeyIdentifiable {
     @Persisted var time: String
     @Persisted var days: List<String>
 }
-

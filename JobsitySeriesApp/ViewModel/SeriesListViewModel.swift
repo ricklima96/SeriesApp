@@ -22,10 +22,9 @@ protocol SeriesListViewModelProtocol {
 final class SeriesListViewModel: ObservableObject, SeriesListViewModelProtocol {
     @Published var state: ResponseState = .idle
     @Published var seriesList: [Series] = []
-    
-    private var page = 0
     private let getAllSeriesUseCase: GetAllSeriesUseCaseProtocol
-    
+    private var page = 0
+
     init(getAllSeriesUseCase: GetAllSeriesUseCaseProtocol = GetAllSeriesUseCase()) {
         self.getAllSeriesUseCase = getAllSeriesUseCase
     }
@@ -48,11 +47,11 @@ final class SeriesListViewModel: ObservableObject, SeriesListViewModelProtocol {
             }
         }
     }
-    
+
     func recheadEndOfPage(series: Series) -> Bool {
         return seriesList.last?.id == series.id
     }
-    
+
     @MainActor
     func fetchSeriesNextPage() async {
         page += 1

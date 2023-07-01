@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SeriesListView: View {
     @StateObject var viewModel: SeriesListViewModel
-    
+
     var body: some View {
         NavigationView {
             ZStack {
@@ -32,16 +32,17 @@ struct SeriesListView: View {
 
 struct SeriesViewContainer: View {
     @StateObject var viewModel: SeriesListViewModel
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             Text("Series")
                 .font(.largeTitle)
                 .padding(.leading, 16)
             ScrollView {
-                LazyVStack (alignment: .leading) {
+                LazyVStack(alignment: .leading) {
                     ForEach(viewModel.seriesList, id: \.id) { series in
-                        NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(), series: series)) {
+                        NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(),
+                                                                      series: series)) {
                             SerieCellView(series: series)
                                 .task {
                                     if viewModel.recheadEndOfPage(series: series) {
@@ -59,7 +60,7 @@ struct SeriesViewContainer: View {
 
 struct SerieCellView: View {
     var series: Series
-    
+
     var body: some View {
         HStack {
             PosterContainerView(imageUrl: series.image.imageUrl, width: 90, height: 125)
@@ -77,7 +78,7 @@ struct PosterContainerView: View {
     let imageUrl: String?
     var width: CGFloat? = 0
     var height: CGFloat? = 0
-    
+
     var body: some View {
         AsyncImage(url: URL(string: imageUrl ?? "")) { image in
             if let image = image.image {
@@ -101,9 +102,9 @@ struct PosterContainerView: View {
 
 struct SeriesErrorView: View {
     @StateObject var viewModel: SeriesListViewModel
-    
+
     var body: some View {
-        VStack (spacing: 16) {
+        VStack(spacing: 16) {
             Text("Sorry, something went wrong.")
             Button {
                 Task {

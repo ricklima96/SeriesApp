@@ -15,13 +15,13 @@ final class SearchSeriesViewModel: ObservableObject, SearchSeriesViewModelProtoc
     @Published var state: ResponseState = .idle
     @Published var seriesList: [Series] = []
     @Published var query: String = ""
-    
+
     private let getSearchedSeriesUseCase: GetSearchedSeriesUseCaseProtocol
-    
+
     init(getSearchedSeriesUseCase: GetSearchedSeriesUseCaseProtocol = GetSearchedSeriesUseCase()) {
         self.getSearchedSeriesUseCase = getSearchedSeriesUseCase
     }
-    
+
     @MainActor
     func fetchSearchedSerie(query: String) async {
         state = .loading
