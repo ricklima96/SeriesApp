@@ -28,7 +28,7 @@ final class GetAllEpisodesUseCase: GetAllEpisodesUseCaseProtocol {
                     number: String($0.number),
                     season: String($0.season),
                     summary: $0.summary?.removeHtmlTags() ?? "-",
-                    image: Poster(imageUrl: $0.image?.medium))
+                    image: Poster(imageUrl: $0.image?.medium ?? ""))
         }
     }
 }

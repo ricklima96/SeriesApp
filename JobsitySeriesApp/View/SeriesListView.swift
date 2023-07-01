@@ -73,23 +73,6 @@ struct SerieCellView: View {
     }
 }
 
-struct SeriesErrorView: View {
-    @StateObject var viewModel: SeriesListViewModel
-    
-    var body: some View {
-        VStack (spacing: 16) {
-            Text("Sorry, something went wrong.")
-            Button {
-                Task {
-                    await viewModel.fetchSeries()
-                }
-            } label: {
-                Text("try again")
-            }
-        }
-    }
-}
-
 struct PosterContainerView: View {
     let imageUrl: String?
     var width: CGFloat? = 0
@@ -111,6 +94,23 @@ struct PosterContainerView: View {
             } else {
                 ProgressView().progressViewStyle(.circular)
                     .frame(width: width, height: height)
+            }
+        }
+    }
+}
+
+struct SeriesErrorView: View {
+    @StateObject var viewModel: SeriesListViewModel
+    
+    var body: some View {
+        VStack (spacing: 16) {
+            Text("Sorry, something went wrong.")
+            Button {
+                Task {
+                    await viewModel.fetchSeries()
+                }
+            } label: {
+                Text("try again")
             }
         }
     }

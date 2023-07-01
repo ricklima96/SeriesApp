@@ -6,16 +6,17 @@
 //
 
 import SwiftUI
+import RealmSwift
+
 
 struct SeriesDetailsView: View {
+    
     @StateObject var viewModel: SeriesDetailsViewModel
-    let series: Series
+    var series: Series
     
     var body: some View {
         ScrollView {
-            Text(series.name).font(.largeTitle)
-                .padding(.leading, 16)
-                .padding(.top, 20)
+            SeriesDetailsHeaderView(series: series)
             VStack(alignment: .leading) {
                 HStack {
                     Spacer()
@@ -56,11 +57,41 @@ struct SeriesDetailsView: View {
                 .padding(.horizontal, 16)
             }
             .task {
-               await viewModel.fetchEpisodes(id: series.id)
+                await viewModel.fetchEpisodes(id: series.id)
             }
         }
     }
 }
+
+struct SeriesDetailsHeaderView: View {
+    @Environment(\.realm) var realm
+    @State var alreadyBookmarked: Bool = false
+    var series: Series
+    
+    var body: some View {
+        HStack {
+            let bookmarkedSeries = Helper.convertSeriesToBookmakedSeries(series)
+            Text(series.name).font(.largeTitle)
+            Spacer()
+            Button(action: {
+                    try? realm.write {
+                        realm.add(bookmarkedSeries, update: .all)
+                        alreadyBookmarked = true
+                }
+            }) {
+                Image(alreadyBookmarked ? "bookmark.fill" : "bookmark")
+                    .resizable()
+                    .frame(width: 30, height: 40)
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.top, 20)
+        .onAppear() {
+            alreadyBookmarked = realm.object(ofType: BookmarkedSeries.self, forPrimaryKey: series.id) != nil
+        }
+    }
+}
+
 
 struct EpisodeListView: View {
     @StateObject var viewModel: SeriesDetailsViewModel
@@ -95,6 +126,7 @@ struct EpisodeCellView: View {
 
 struct SeriesDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        SeriesDetailsView(viewModel: SeriesDetailsViewModel(), series: Series(id: "1", rating: "9.5", name: "The Dome", image: Poster(imageUrl: "https://static.tvmaze.com/uploads/images/medium_portrait/81/202627.jpg"), schedule: Schedule(time: "19:00", days: ["Friday", "Saturday"]), genres: ["Drama", "Dark Comedy"], summary: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."))
+        SeriesDetailsView(viewModel: SeriesDetailsViewModel(), series: Series(id: "1", rating: "9.5", name: "The Dome", image: Poster(imageUrl: "https://static.tvmaze.com/uploads/images/medium_portrait/81/202627.jpg"), schedule: Helper.checkEmptySchedules(schedule: ScheduleResponse(time: "20:00", days: ["fridays"])), genres: Helper.checkEmptyGenres(genres: ["dark comedy"]), summary: "Lorem ipsum dolor sit amet"))
     }
 }
+

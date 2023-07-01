@@ -26,7 +26,7 @@ final class GetAllSeriesUseCase: GetAllSeriesUseCaseProtocol {
             Series(id: String($0.id),
                    rating: Helper.checkEmptyRating(rating: $0.rating?.average),
                    name: $0.name,
-                   image: Poster(imageUrl: $0.image?.medium),
+                   image: Poster(imageUrl: $0.image?.medium ?? ""),
                    schedule: Helper.checkEmptySchedules(schedule: $0.schedule),
                    genres: Helper.checkEmptyGenres(genres: $0.genres),
                    summary: $0.summary?.removeHtmlTags() ?? "-")

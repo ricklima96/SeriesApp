@@ -17,7 +17,12 @@ struct Series {
     var summary: String
 }
 
-struct Schedule {
+struct Poster {
+    var imageUrl: String
+}
+
+struct Schedule  {
     var time: String
     var days: [String]
 }
+

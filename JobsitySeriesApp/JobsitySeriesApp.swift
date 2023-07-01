@@ -21,6 +21,10 @@ struct JobsitySeriesApp: App {
                     .tabItem {
                         Label("", systemImage: "sparkle.magnifyingglass")
                     }
+                BookmarksView()
+                    .tabItem {
+                        Label("", systemImage: "bookmark.fill")
+                    }
             }
         }
     }

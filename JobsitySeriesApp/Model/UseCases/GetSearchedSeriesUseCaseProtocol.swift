@@ -26,7 +26,7 @@ final class GetSearchedSeriesUseCase: GetSearchedSeriesUseCaseProtocol {
             Series(id: String($0.show.id),
                    rating: Helper.checkEmptyRating(rating: $0.show.rating?.average),
                    name: $0.show.name,
-                   image: Poster(imageUrl: $0.show.image?.medium),
+                   image: Poster(imageUrl: $0.show.image?.medium ?? ""),
                    schedule: Helper.checkEmptySchedules(schedule: $0.show.schedule),
                    genres: Helper.checkEmptyGenres(genres: $0.show.genres),
                    summary: $0.show.summary?.removeHtmlTags() ?? "-")

@@ -30,7 +30,7 @@ final class SeriesService: SeriesServiceProtocol {
         return try await ApiManager.shared.callApi(ofType: [EpisodeResponse].self, urlRequest: urlRequest)
     }
     
-    private func buildRequest(with requestModel: RequestProtocol) throws -> URLRequest {
+    func buildRequest(with requestModel: RequestProtocol) throws -> URLRequest {
         let parameters = requestModel.queryParameters?.map { URLQueryItem(name: $0.key, value: $0.value) }
        
         var urlComponents = URLComponents(string: requestModel.url + requestModel.path)
