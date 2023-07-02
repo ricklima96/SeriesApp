@@ -10,10 +10,9 @@ import RealmSwift
 
 class Helper {
     static func formatSchedules(schedule: ScheduleResponse?) -> Schedule {
-        var time: String = schedule?.time ?? ""
+        let time: String = schedule?.time ?? ""
         var days: [String] = schedule?.days ?? []
 
-        if time.isEmpty { time = "-" }
         if days.isEmpty { days = ["-"] }
 
         return Schedule(time: time, days: days)
@@ -27,30 +26,28 @@ class Helper {
     }
 
     static func formatGenres(genres: [String]?) -> [String] {
-        if let genresReponse = genres {
-            if genresReponse.isEmpty {
-                return ["-"]
-            }
-            return genresReponse
-        }
-        return ["-"]
+        return genres?.isEmpty == false ? genres! : ["-"]
     }
 
     static func removeHtmlTags(string: String?) -> String {
-        guard let filledString = string else {
+        guard let filledString = string, !filledString.isEmpty else {
             return "-"
         }
-        if filledString.isEmpty {
-            return "-"
-        }
-        return filledString.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
+
+        let regex = "<[^>]+>"
+        let filteredString = filledString.replacingOccurrences(of: regex, with: "", options: .regularExpression)
+
+        return filteredString
     }
 
     static func convertBookmarkedSeriesToSeries(_ bookmarked: BookmarkedSeries) -> Series {
-        return Series(id: bookmarked.seriesId, rating: bookmarked.rating,
-                      name: bookmarked.name, image: Poster(imageUrl: bookmarked.imageUrl),
+        return Series(id: bookmarked.seriesId,
+                      rating: bookmarked.rating,
+                      name: bookmarked.name,
+                      image: Poster(imageUrl: bookmarked.imageUrl),
                       schedule: Schedule(time: bookmarked.time, days: Array(bookmarked.days)),
-                      genres: Array(bookmarked.genres), summary: bookmarked.summary)
+                      genres: Array(bookmarked.genres),
+                      summary: bookmarked.summary)
     }
 
     static func convertSeriesToBookmakedSeries(_ series: Series) -> BookmarkedSeries {
@@ -60,9 +57,13 @@ class Helper {
         let genres = List<String>()
         genres.append(objectsIn: series.genres)
 
-        return BookmarkedSeries(seriesId: series.id, rating: series.rating,
-                                name: series.name, genres: genres,
-                                summary: series.summary, imageUrl: series.image.imageUrl,
-                                time: series.schedule.time, days: days)
+        return BookmarkedSeries(seriesId: series.id,
+                                rating: series.rating,
+                                name: series.name,
+                                genres: genres,
+                                summary: series.summary,
+                                imageUrl: series.image.imageUrl,
+                                time: series.schedule.time,
+                                days: days)
     }
 }

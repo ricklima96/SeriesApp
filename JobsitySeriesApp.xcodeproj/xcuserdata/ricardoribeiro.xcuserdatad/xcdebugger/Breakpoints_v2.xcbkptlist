@@ -49,6 +49,69 @@
                   endingLineNumber = "89"
                   offsetFromSymbolStart = "2452">
                </Location>
+               <Location
+                  uuid = "B5685298-8BCD-404A-9BF0-5567E8D02753 - 70609dbd30fac71d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SwiftUI.AsyncImagePhase) -&gt; SwiftUI._ConditionalContent&lt;SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.font(Swift.Optional&lt;SwiftUI.Font&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.border&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, width: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0&gt;, JobsitySeriesApp.LoadingView&gt; in JobsitySeriesApp.PosterContainerView.body.getter : some"
+                  moduleName = "JobsitySeriesApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ricardoribeiro/Documents/iOS/xcode%20projects/JobsitySeriesApp/JobsitySeriesApp/View/SeriesListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "2552">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "20C6575F-9C57-46E8-AB78-C191189F670D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JobsitySeriesApp/View/AuthenticationView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "20C6575F-9C57-46E8-AB78-C191189F670D - 748ed14e2e06e633"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JobsitySeriesApp.PinCodeView.body.getter : some"
+                  moduleName = "JobsitySeriesApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ricardoribeiro/Documents/iOS/xcode%20projects/JobsitySeriesApp/JobsitySeriesApp/View/AuthenticationView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "632">
+               </Location>
+               <Location
+                  uuid = "20C6575F-9C57-46E8-AB78-C191189F670D - b2458425572fda04"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.Text, &lt;&lt;opaque return type of SwiftUI.View.multilineTextAlignment(SwiftUI.TextAlignment) -&gt; some&gt;&gt;.0, SwiftUI.Button&lt;SwiftUI.Text&gt;)&gt; in JobsitySeriesApp.PinCodeView.body.getter : some"
+                  moduleName = "JobsitySeriesApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ricardoribeiro/Documents/iOS/xcode%20projects/JobsitySeriesApp/JobsitySeriesApp/View/AuthenticationView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "65"
+                  endingLineNumber = "65"
+                  offsetFromSymbolStart = "500">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>

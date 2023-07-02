@@ -23,20 +23,22 @@ final class SeriesDetailsViewModel: ObservableObject, SeriesDetailsViewModelProt
 
     @MainActor
     func fetchEpisodes(id: String) async {
-        if state != .loaded {
-            state = .loading
-            do {
-                episodesList = try await getAllEpisodesUseCase.getAllEpisodes(id: id)
-                if episodesList.count > 0 {
-                    self.episodesList = episodesList
-                    self.state = .loaded
-                    return
-                }
-                self.state = .error
-            } catch {
-                print(error)
-                self.state = .error
+        guard state != .loaded else {
+            return
+        }
+
+        state = .loading
+        do {
+            episodesList = try await getAllEpisodesUseCase.getAllEpisodes(id: id)
+            if !episodesList.isEmpty {
+                self.episodesList = episodesList
+                self.state = .loaded
+                return
             }
+            self.state = .error
+        } catch {
+            print(error)
+            self.state = .error
         }
     }
 }

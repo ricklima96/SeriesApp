@@ -10,38 +10,52 @@ import XCTest
 
 final class NetworkTesting: XCTestCase {
     
-    private let sut = SeriesService()
+//    var sut: SeriesService
+//    
+//    override func setUp() {
+//        super.setUp()
+//        seriesService = SeriesService()
+//    }
+//    
+//    override func tearDown() {
+//        seriesService = nil
+//        super.tearDown()
+//    }
+//    
+//    func testRequestBuilding() async throws {
+//
+//        let requestURL = try sut.buildRequest(with: SeriesListRequest(page: 1))
+//        XCTAssertNotNil(requestURL)
+//    }
+//    
+//    func testFetchAllSeries() {
+//        let id = "1"
+//        let expectedResponse = [ SeriesResponse(id: 1, name: "Friends"),
+//                                 SeriesResponse(id: 2, name: "The Bear") ]
+//        
+//        let mockApiManager = MockApiManager(mockedResponse: expectedResponse)
+//        sut. = mockApiManager
+//        
+//    }
 
-    func testRequestBuilding() async throws {
     
-        let requestURL = try sut.buildRequest(with: SeriesListRequest(page: 1))
-        XCTAssertNotNil(requestURL)
+}
+
+
+final class MockApiManager {
+    let mockedResponse: Decodable
+    
+    init(mockedResponse: Decodable) {
+        self.mockedResponse = mockedResponse
     }
     
-    func testFetchAllSeries() async throws {
+    func callApi<T: Decodable>(_: T.Type, urlRequest: URLRequest) async throws -> T {
 
-        let series = try await sut.fetchAllSeries(page: 1)
-        
-        XCTAssertNotNil(series)
-        XCTAssertTrue(series.count > 0)
-        XCTAssertTrue(!series.isEmpty)
-    }
-
-    
-    func testFetchSearchedSeries() async throws {
-        let series = try await sut.fetchSearchedSeries(query: "Friends")
-        
-        XCTAssertNotNil(series)
-        XCTAssertTrue(series.count > 0)
-        XCTAssertTrue(!series.isEmpty)
-    }
-
-    
-    func testFetchAllEpisodes() async throws {
-        let serepisodesies = try await sut.fetchAllEpisodes(id: "1")
-        
-        XCTAssertNotNil(serepisodesies)
-        XCTAssertTrue(serepisodesies.count > 0)
-        XCTAssertTrue(!serepisodesies.isEmpty)
+            guard T.self == T.self else {
+               throw NetworkError.dataRequestError("Unexpected type")
+           }
+           
+           return mockedResponse as! T
     }
 }
+

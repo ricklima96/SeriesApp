@@ -13,7 +13,7 @@ protocol GetAllEpisodesUseCaseProtocol {
 
 final class GetAllEpisodesUseCase: GetAllEpisodesUseCaseProtocol {
 
-    private var seriesService: SeriesServiceProtocol
+    private let seriesService: SeriesServiceProtocol
 
     init(seriesService: SeriesServiceProtocol = SeriesService()) {
         self.seriesService = seriesService

@@ -13,7 +13,7 @@ protocol GetSearchedSeriesUseCaseProtocol {
 
 final class GetSearchedSeriesUseCase: GetSearchedSeriesUseCaseProtocol {
 
-    private var seriesService: SeriesServiceProtocol
+    private let seriesService: SeriesServiceProtocol
 
     init(seriesService: SeriesServiceProtocol = SeriesService()) {
         self.seriesService = seriesService

@@ -31,20 +31,22 @@ final class SeriesListViewModel: ObservableObject, SeriesListViewModelProtocol {
 
     @MainActor
     func fetchSeries() async {
-        if state != .loaded {
-            state = .loading
-            do {
-                seriesList = try await getAllSeriesUseCase.getAllSeries(page: page)
-                if seriesList.count > 0 {
-                    self.seriesList = seriesList
-                    self.state = .loaded
-                    return
-                }
-                self.state = .error
-            } catch {
-                print(error)
-                self.state = .error
+        guard state != .loaded else {
+            return
+        }
+
+        state = .loading
+        do {
+            seriesList = try await getAllSeriesUseCase.getAllSeries(page: page)
+            if !seriesList.isEmpty {
+                self.seriesList = seriesList
+                self.state = .loaded
+                return
             }
+            self.state = .error
+        } catch {
+            print(error)
+            self.state = .error
         }
     }
 

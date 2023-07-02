@@ -10,22 +10,30 @@ import SwiftUI
 @main
 struct JobsitySeriesApp: App {
 
+    @StateObject var authViewModel: AuthenticationViewModel = AuthenticationViewModel()
+
     var body: some Scene {
         WindowGroup {
-            TabView {
-                SeriesListView(viewModel: SeriesListViewModel())
-                    .tabItem {
-                        Label("", systemImage: "sparkles.tv")
+            Group {
+                if authViewModel.isUnlocked || authViewModel.authMethod == "none" {
+                    TabView {
+                        SeriesListView(viewModel: SeriesListViewModel())
+                            .tabItem {
+                                Label("", systemImage: "sparkles.tv")
+                            }
+                        SearchSeriesView(viewModel: SearchSeriesViewModel())
+                            .tabItem {
+                                Label("", systemImage: "sparkle.magnifyingglass")
+                            }
+                        BookmarksView()
+                            .tabItem {
+                                Label("", systemImage: "bookmark.fill")
+                            }
                     }
-                SearchSeriesView(viewModel: SearchSeriesViewModel())
-                    .tabItem {
-                        Label("", systemImage: "sparkle.magnifyingglass")
-                    }
-                BookmarksView()
-                    .tabItem {
-                        Label("", systemImage: "bookmark.fill")
-                    }
-            }
+                } else {
+                    AuthenticationView()
+                }
+            }.environmentObject(authViewModel)
         }
     }
 }

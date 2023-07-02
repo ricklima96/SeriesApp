@@ -65,9 +65,9 @@ struct SerieCellView: View {
                     .padding(.leading, 8)
                 Spacer()
             }
-            .padding(.vertical, 6)
-            .padding(.horizontal, 16)
         }
+        .padding(.vertical, 6)
+        .padding(.horizontal, 16)
         .buttonStyle(.plain)
     }
 }

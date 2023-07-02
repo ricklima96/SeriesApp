@@ -9,8 +9,8 @@ import Foundation
 
 struct SearchSeriesRequest: RequestProtocol {
     var query: String
-    var url: String { return "https://api.tvmaze.com" }
-    var path: String { return "/search/shows" }
-    var method: String { return "GET" }
-    var queryParameters: [String: String]? { return ["q": self.query] }
+    var url: String { "https://api.tvmaze.com" }
+    var path: String { "/search/shows" }
+    var method: String { "GET" }
+    var queryParameters: [String: String]? { ["q": self.query] }
 }

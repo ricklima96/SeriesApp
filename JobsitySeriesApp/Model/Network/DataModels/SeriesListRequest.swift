@@ -16,8 +16,8 @@ protocol RequestProtocol {
 
 struct SeriesListRequest: RequestProtocol {
     var page: Int
-    var url: String { return "https://api.tvmaze.com" }
-    var path: String { return "/shows" }
-    var method: String { return "GET" }
-    var queryParameters: [String: String]? { return ["page": String(self.page)] }
+    var url: String { "https://api.tvmaze.com" }
+    var path: String { "/shows" }
+    var method: String { "GET" }
+    var queryParameters: [String: String]? { ["page": String(self.page)] }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		351657F42A51C07900E59BDA /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351657F32A51C07900E59BDA /* AuthenticationView.swift */; };
 		353CECEA2A4B7D77003CC18B /* SeriesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353CECE92A4B7D77003CC18B /* SeriesListViewModel.swift */; };
 		353CECEC2A4B8D07003CC18B /* EpisodeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353CECEB2A4B8D07003CC18B /* EpisodeResponse.swift */; };
 		353CECF52A4B8EF7003CC18B /* SearchSeriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353CECF42A4B8EF7003CC18B /* SearchSeriesResponse.swift */; };
@@ -32,6 +33,7 @@
 		359351EA2A4FE21900449453 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 359351E92A4FE21900449453 /* Realm */; };
 		359351EC2A4FE21900449453 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 359351EB2A4FE21900449453 /* RealmSwift */; };
 		35B0D6DF2A50544600D8BD7F /* BookmarkedSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B0D6DE2A50544600D8BD7F /* BookmarkedSeries.swift */; };
+		35EA2B3C2A51F09E00055459 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EA2B3B2A51F09E00055459 /* AuthenticationViewModel.swift */; };
 		35F052112A4E15EA0036D1AE /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F052102A4E15EA0036D1AE /* Helper.swift */; };
 		35F54C042A4DBB3C00AAFDBF /* SeriesDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F54C032A4DBB3C00AAFDBF /* SeriesDetailsView.swift */; };
 		35F54C0B2A4DC29100AAFDBF /* SeriesDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35F54C0A2A4DC29100AAFDBF /* SeriesDetailsViewModel.swift */; };
@@ -58,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		351657F32A51C07900E59BDA /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		353CECE92A4B7D77003CC18B /* SeriesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesListViewModel.swift; sourceTree = "<group>"; };
 		353CECEB2A4B8D07003CC18B /* EpisodeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeResponse.swift; sourceTree = "<group>"; };
 		353CECF42A4B8EF7003CC18B /* SearchSeriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSeriesResponse.swift; sourceTree = "<group>"; };
@@ -84,6 +87,7 @@
 		3585BEC02A4F1D5400CDD8D7 /* SearchSeriesRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchSeriesRequest.swift; sourceTree = "<group>"; };
 		359351C72A4FAF1500449453 /* BookmarksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarksView.swift; sourceTree = "<group>"; };
 		35B0D6DE2A50544600D8BD7F /* BookmarkedSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkedSeries.swift; sourceTree = "<group>"; };
+		35EA2B3B2A51F09E00055459 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		35F052102A4E15EA0036D1AE /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		35F54C032A4DBB3C00AAFDBF /* SeriesDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailsView.swift; sourceTree = "<group>"; };
 		35F54C0A2A4DC29100AAFDBF /* SeriesDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -149,11 +153,12 @@
 		3557E0A42A4B786200D49A3F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				35F54C032A4DBB3C00AAFDBF /* SeriesDetailsView.swift */,
-				35F54C112A4DE40E00AAFDBF /* EpisodeDetailsView.swift */,
 				353CECF62A4B9010003CC18B /* SeriesListView.swift */,
 				353CECFA2A4B903F003CC18B /* SearchSeriesView.swift */,
 				359351C72A4FAF1500449453 /* BookmarksView.swift */,
+				35F54C032A4DBB3C00AAFDBF /* SeriesDetailsView.swift */,
+				35F54C112A4DE40E00AAFDBF /* EpisodeDetailsView.swift */,
+				351657F32A51C07900E59BDA /* AuthenticationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -277,9 +282,10 @@
 		35F54C0C2A4DC29700AAFDBF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				35F54C0A2A4DC29100AAFDBF /* SeriesDetailsViewModel.swift */,
 				353CECE92A4B7D77003CC18B /* SeriesListViewModel.swift */,
 				353CECF82A4B9037003CC18B /* SearchSeriesViewModel.swift */,
+				35F54C0A2A4DC29100AAFDBF /* SeriesDetailsViewModel.swift */,
+				35EA2B3B2A51F09E00055459 /* AuthenticationViewModel.swift */,
 				35654A932A4BC25200925D72 /* Models */,
 			);
 			path = ViewModel;
@@ -424,6 +430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35EA2B3C2A51F09E00055459 /* AuthenticationViewModel.swift in Sources */,
 				353CECEA2A4B7D77003CC18B /* SeriesListViewModel.swift in Sources */,
 				353CECF72A4B9010003CC18B /* SeriesListView.swift in Sources */,
 				353CECEC2A4B8D07003CC18B /* EpisodeResponse.swift in Sources */,
@@ -448,6 +455,7 @@
 				359351C82A4FAF1500449453 /* BookmarksView.swift in Sources */,
 				356F5C922A4B60370042EF4B /* JobsitySeriesApp.swift in Sources */,
 				35B0D6DF2A50544600D8BD7F /* BookmarkedSeries.swift in Sources */,
+				351657F42A51C07900E59BDA /* AuthenticationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,6 +626,7 @@
 				DEVELOPMENT_TEAM = XKD337QVA3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "\"Enable authentication to secure your data.\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -651,6 +660,7 @@
 				DEVELOPMENT_TEAM = XKD337QVA3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "\"Enable authentication to secure your data.\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

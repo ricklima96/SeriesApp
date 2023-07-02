@@ -27,13 +27,13 @@ final class SearchSeriesViewModel: ObservableObject, SearchSeriesViewModelProtoc
         state = .loading
         do {
             seriesList = try await getSearchedSeriesUseCase.getSearchedSeries(query: query)
-            if seriesList.count > 0 {
+            if !seriesList.isEmpty {
                 self.state = .loaded
                 return
             }
             self.state = .error
         } catch {
-            print(error.localizedDescription)
+            print(error)
             self.state = .error
         }
     }

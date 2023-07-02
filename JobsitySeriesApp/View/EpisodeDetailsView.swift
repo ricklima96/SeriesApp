@@ -11,30 +11,28 @@ struct EpisodeDetailsView: View {
     let episode: Episode
 
     var body: some View {
-        VStack(alignment: .center) {
+        VStack(alignment: .center, spacing: 16) {
             Text(episode.name)
                 .font(.largeTitle)
-                .padding(.horizontal, 16)
-            HStack {
-                Spacer()
-                PosterContainerView(imageUrl: episode.image.imageUrl, width: 300, height: 200)
-                Spacer()
-            }
-            .padding(.bottom, 16)
+            PosterContainerView(imageUrl: episode.image.imageUrl, width: 300, height: 200)
             VStack(spacing: 16) {
-                Text("S\(episode.season) E\(episode.number)").font(.headline)
+                Text("S\(episode.season) E\(episode.number)")
+                    .font(.headline)
                 Text(episode.summary)
+                    .padding(.horizontal, 16)
                 Spacer()
             }
-            .padding(.horizontal, 16)
         }
     }
 }
 
 struct EpisodeDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        EpisodeDetailsView(episode: Episode(id: "1", name: "Ozymandias", number: "1",
-                                       season: "2", summary: "Lorem ipsum dolor sit.",
-                                       image: Poster(imageUrl: "")))
+        EpisodeDetailsView(episode: Episode(id: "1",
+                                            name: "Ozymandias",
+                                            number: "1",
+                                            season: "2",
+                                            summary: "Lorem ipsum dolor sit.",
+                                            image: Poster(imageUrl: "")))
     }
 }

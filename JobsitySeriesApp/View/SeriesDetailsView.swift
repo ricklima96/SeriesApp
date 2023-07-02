@@ -117,7 +117,8 @@ struct EpisodeListContainerView: View {
         ForEach(viewModel.episodesList, id: \.id) { episode in
             NavigationLink(destination: EpisodeDetailsView(episode: episode)) {
                 HStack {
-                    Text("S\(episode.season) E\(episode.number)").font(.headline)
+                    Text("S\(episode.season) E\(episode.number)")
+                        .font(.headline)
                     Text(episode.name)
                 }
             }
@@ -129,10 +130,9 @@ struct SeriesDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         SeriesDetailsView(viewModel: SeriesDetailsViewModel(),
                           series: Series(id: "1", rating: "9.5",
-                                         name: "The Dome", image: Poster(imageUrl: ""),
-                                         schedule: Helper.formatSchedules(schedule: ScheduleResponse(time: "-",
-                                                                                             days: ["-"])),
-                                         genres: Helper.formatGenres(genres: ["-"]),
-                                         summary: "Lorem ipsum dolor sit amet"))
+                          name: "The Dome", image: Poster(imageUrl: ""),
+                          schedule: Helper.formatSchedules(schedule: ScheduleResponse(time: "-", days: ["-"])),
+                          genres: Helper.formatGenres(genres: ["-"]),
+                          summary: "Lorem ipsum dolor sit amet"))
     }
 }

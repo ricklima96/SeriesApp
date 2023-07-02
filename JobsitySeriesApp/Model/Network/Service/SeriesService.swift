@@ -16,21 +16,21 @@ protocol SeriesServiceProtocol {
 final class SeriesService: SeriesServiceProtocol {
 
     func fetchAllSeries(page: Int) async throws -> [SeriesResponse] {
-        let urlRequest = try buildRequest(with: SeriesListRequest(page: page))
-        return try await ApiManager.shared.callApi(ofType: [SeriesResponse].self, urlRequest: urlRequest)
+        let urlRequest = try buildRequest(SeriesListRequest(page: page))
+        return try await ApiManager.shared.callApi([SeriesResponse].self, urlRequest: urlRequest)
     }
 
     func fetchSearchedSeries(query: String) async throws -> [SearchSeriesResponse] {
-        let urlRequest = try buildRequest(with: SearchSeriesRequest(query: query))
-        return try await ApiManager.shared.callApi(ofType: [SearchSeriesResponse].self, urlRequest: urlRequest)
+        let urlRequest = try buildRequest(SearchSeriesRequest(query: query))
+        return try await ApiManager.shared.callApi([SearchSeriesResponse].self, urlRequest: urlRequest)
     }
 
     func fetchAllEpisodes(id: String) async throws -> [EpisodeResponse] {
-        let urlRequest = try buildRequest(with: EpisodeRequest(id: id))
-        return try await ApiManager.shared.callApi(ofType: [EpisodeResponse].self, urlRequest: urlRequest)
+        let urlRequest = try buildRequest(EpisodeRequest(id: id))
+        return try await ApiManager.shared.callApi([EpisodeResponse].self, urlRequest: urlRequest)
     }
 
-    func buildRequest(with requestModel: RequestProtocol) throws -> URLRequest {
+    func buildRequest(_ requestModel: RequestProtocol) throws -> URLRequest {
         let parameters = requestModel.queryParameters?.map { URLQueryItem(name: $0.key, value: $0.value) }
 
         var urlComponents = URLComponents(string: requestModel.url + requestModel.path)
