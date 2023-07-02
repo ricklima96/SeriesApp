@@ -8,7 +8,7 @@ To run the app, download this repository and open it on Xcode.
 * Views are built in SwiftUI, and responsible for displaying all the data to the user.
 * View Models handle all the interactions and update the view with the requested information.
 
-Current features:
+Current features (some were left out due to time constraints):
 - [x] List of series
 - [x] Search by name
 - [x] Serie details
@@ -21,6 +21,8 @@ Current features:
 
 Observations:
 * The whole project was developed only using the main branch, git flow was not considered for simplicity purposes.
+
+* User authentication was implemented, checking whether the user device supports biometric authentication and prompting as an option. The user can opt for a 4 PIN authentication or no authentication at all, choices that will be erased when the app is uninstalled.
 
 * Dependency Injection using Swinject was scrapped because some issues with Protocols inheriting ObservableObject came up and the lack of time resulted in this decision.
 
