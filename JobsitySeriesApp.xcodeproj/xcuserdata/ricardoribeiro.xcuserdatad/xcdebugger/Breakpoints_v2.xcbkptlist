@@ -3,4 +3,54 @@
    uuid = "05AFE1F1-AA53-4643-AA25-D7D5564FE105"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B5685298-8BCD-404A-9BF0-5567E8D02753"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JobsitySeriesApp/View/SeriesListView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "B5685298-8BCD-404A-9BF0-5567E8D02753 - 70609dbd30fac71d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SwiftUI.AsyncImagePhase) -&gt; SwiftUI._ConditionalContent&lt;SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.font(Swift.Optional&lt;SwiftUI.Font&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.border&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, width: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0&gt;, JobsitySeriesApp.LoadingView&gt; in JobsitySeriesApp.PosterContainerView.body.getter : some"
+                  moduleName = "JobsitySeriesApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ricardoribeiro/Documents/iOS/xcode%20projects/JobsitySeriesApp/JobsitySeriesApp/View/SeriesListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "2356">
+               </Location>
+               <Location
+                  uuid = "B5685298-8BCD-404A-9BF0-5567E8D02753 - 70609dbd30fac71d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (SwiftUI.AsyncImagePhase) -&gt; SwiftUI._ConditionalContent&lt;SwiftUI._ConditionalContent&lt;&lt;&lt;opaque return type of SwiftUI.View.font(Swift.Optional&lt;SwiftUI.Font&gt;) -&gt; some&gt;&gt;.0, &lt;&lt;opaque return type of SwiftUI.View.border&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ShapeStyle&gt;(_: &#x3c4;_1_0, width: CoreGraphics.CGFloat) -&gt; some&gt;&gt;.0&gt;, JobsitySeriesApp.LoadingView&gt; in JobsitySeriesApp.PosterContainerView.body.getter : some"
+                  moduleName = "JobsitySeriesApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ricardoribeiro/Documents/iOS/xcode%20projects/JobsitySeriesApp/JobsitySeriesApp/View/SeriesListView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "2452">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

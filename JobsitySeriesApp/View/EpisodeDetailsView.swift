@@ -12,7 +12,9 @@ struct EpisodeDetailsView: View {
 
     var body: some View {
         VStack(alignment: .center) {
-            Text(episode.name).font(.largeTitle).padding(.horizontal, 16)
+            Text(episode.name)
+                .font(.largeTitle)
+                .padding(.horizontal, 16)
             HStack {
                 Spacer()
                 PosterContainerView(imageUrl: episode.image.imageUrl, width: 300, height: 200)

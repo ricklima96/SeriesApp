@@ -13,22 +13,18 @@ struct SearchSeriesView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                Text("Search")
-                    .font(.largeTitle)
-                    .padding(.leading, 16)
-                SearchBarView(viewModel: viewModel)
+                SearchHeaderView(viewModel: viewModel)
                 Spacer()
                 HStack {
                     Spacer()
                     ZStack(alignment: .center) {
                         switch viewModel.state {
                         case .idle:
-                            Text("Please search above")
+                            Text("Please search above.")
                         case .loading:
-                            ProgressView()
-                                .progressViewStyle(CircularProgressViewStyle(tint: Color.black))
+                            LoadingView(width: 50, height: 50)
                         case .loaded:
-                            SearchViewContainer(viewModel: viewModel)
+                            SearchResultsContainerView(viewModel: viewModel)
                         case .error:
                             Text("Series not found.")
                         }
@@ -41,36 +37,42 @@ struct SearchSeriesView: View {
     }
 }
 
+struct SearchHeaderView: View {
+    @StateObject var viewModel: SearchSeriesViewModel
+
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Search")
+                .font(.largeTitle)
+            SearchBarView(viewModel: viewModel)
+        }
+        .padding(.horizontal, 16)
+    }
+}
+
 struct SearchBarView: View {
     @StateObject var viewModel: SearchSeriesViewModel
 
     var body: some View {
-        TextField("Search for series...", text: $viewModel.query)
-            .padding(7)
-            .padding(.horizontal, 25)
+        TextField(" Search for series...", text: $viewModel.query)
+            .padding(.vertical, 8)
+            .padding(.horizontal, 16)
             .background(Color(.systemGray6))
             .cornerRadius(8)
-            .padding(.horizontal, 10)
             .onChange(of: viewModel.query, perform: { _ in
                 Task { await viewModel.fetchSearchedSerie(query: viewModel.query) }
             })
     }
 }
 
-struct SearchViewContainer: View {
+struct SearchResultsContainerView: View {
     @StateObject var viewModel: SearchSeriesViewModel
 
     var body: some View {
         ScrollView {
             LazyVStack(alignment: .leading) {
                 ForEach(viewModel.seriesList, id: \.id) { series in
-                   NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(), series: series)) {
-                        VStack {
-                            SerieCellView(series: series)
-                            Divider()
-                        }
-                    }
-                    .buttonStyle(.plain)
+                    SerieCellView(series: series)
                 }
             }
         }

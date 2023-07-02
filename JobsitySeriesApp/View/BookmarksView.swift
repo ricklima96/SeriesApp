@@ -24,18 +24,12 @@ struct BookmarksView: View {
                     }
                     List {
                         ForEach(bookmarkedSeriesList, id: \.id) { bookmarkedSeries in
-                            let series = Helper.convertBookmarkedSeriesToSeries(bookmarkedSeries)
-                            NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(),
-                                                                          series: series)) {
-                                SerieCellView(series: series)
-                            }
-                            .buttonStyle(.plain)
+                            SerieCellView(series: Helper.convertBookmarkedSeriesToSeries(bookmarkedSeries))
                         }
                         .onDelete { index in
                             $bookmarkedSeriesList.remove(atOffsets: index)
                         }
                         .listRowSeparator(.hidden)
-                        .listStyle(.plain)
                     }
                 }
             }

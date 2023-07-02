@@ -37,7 +37,7 @@ final class SeriesService: SeriesServiceProtocol {
         urlComponents?.queryItems = parameters
 
         guard let url = urlComponents?.url else {
-            throw NetworkError.badUrl("bad url")
+            throw NetworkError.badUrl("Bad url.")
         }
 
         var urlRequest = URLRequest(url: url, cachePolicy: .reloadRevalidatingCacheData)

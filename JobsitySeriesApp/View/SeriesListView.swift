@@ -15,10 +15,9 @@ struct SeriesListView: View {
             ZStack {
                 switch viewModel.state {
                 case .idle, .loading:
-                    ProgressView().progressViewStyle(.circular)
-                        .frame(width: 100, height: 120)
+                    LoadingView(width: 100, height: 120)
                 case .loaded:
-                    SeriesViewContainer(viewModel: viewModel)
+                    SeriesListContainerView(viewModel: viewModel)
                 case .error:
                     SeriesErrorView(viewModel: viewModel)
                 }
@@ -30,31 +29,27 @@ struct SeriesListView: View {
     }
 }
 
-struct SeriesViewContainer: View {
+struct SeriesListContainerView: View {
     @StateObject var viewModel: SeriesListViewModel
 
     var body: some View {
         VStack(alignment: .leading) {
             Text("Series")
                 .font(.largeTitle)
-                .padding(.leading, 16)
             ScrollView {
                 LazyVStack(alignment: .leading) {
                     ForEach(viewModel.seriesList, id: \.id) { series in
-                        NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(),
-                                                                      series: series)) {
-                            SerieCellView(series: series)
-                                .task {
-                                    if viewModel.recheadEndOfPage(series: series) {
-                                        await viewModel.fetchSeriesNextPage()
-                                    }
+                        SerieCellView(series: series)
+                            .task {
+                                if viewModel.recheadEndOfPage(series: series) {
+                                    await viewModel.fetchSeriesNextPage()
                                 }
-                        }
-                        .buttonStyle(.plain)
+                            }
                     }
                 }
             }
         }
+        .padding(.horizontal, 16)
     }
 }
 
@@ -62,39 +57,41 @@ struct SerieCellView: View {
     var series: Series
 
     var body: some View {
-        HStack {
-            PosterContainerView(imageUrl: series.image.imageUrl, width: 90, height: 125)
-            Text(series.name)
-                .font(.system(size: 20))
-                .padding(.leading, 8)
-            Spacer()
+        NavigationLink(destination: SeriesDetailsView(viewModel: SeriesDetailsViewModel(), series: series)) {
+            HStack {
+                PosterContainerView(imageUrl: series.image.imageUrl, width: 90, height: 125)
+                Text(series.name)
+                    .font(.system(size: 20))
+                    .padding(.leading, 8)
+                Spacer()
+            }
+            .padding(.vertical, 6)
+            .padding(.horizontal, 16)
         }
-        .padding(.vertical, 6)
-        .padding(.horizontal, 16)
+        .buttonStyle(.plain)
     }
 }
 
 struct PosterContainerView: View {
-    let imageUrl: String?
-    var width: CGFloat? = 0
-    var height: CGFloat? = 0
+    let imageUrl: String
+    var width: CGFloat = 0
+    var height: CGFloat = 0
 
     var body: some View {
-        AsyncImage(url: URL(string: imageUrl ?? "")) { image in
+        AsyncImage(url: URL(string: imageUrl)) { image in
             if let image = image.image {
                 image
                     .resizable()
                     .scaledToFit()
                     .frame(width: width, height: height)
                     .font(.system(size: 20))
-            } else if image.error != nil || imageUrl == nil {
+            } else if image.error != nil || imageUrl.isEmpty {
                 Text("poster not found")
                     .frame(width: width, height: height)
                     .multilineTextAlignment(.center)
                     .border(.gray, width: 0.5)
             } else {
-                ProgressView().progressViewStyle(.circular)
-                    .frame(width: width, height: height)
+                LoadingView(width: width, height: height)
             }
         }
     }
@@ -114,6 +111,16 @@ struct SeriesErrorView: View {
                 Text("try again")
             }
         }
+    }
+}
+
+struct LoadingView: View {
+    var width: CGFloat = 0
+    var height: CGFloat = 0
+
+    var body: some View {
+        ProgressView().progressViewStyle(.circular)
+            .frame(width: width, height: height)
     }
 }
 
