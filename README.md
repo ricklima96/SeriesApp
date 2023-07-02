@@ -14,7 +14,7 @@ Current features:
 - [x] Serie details
 - [x] Episode Details
 - [x] Bookmarked series
-- [ ] PIN and FaceID authentication
+- [x] PIN and FaceID authentication
 - [ ] Search by Actor/Actress name
 - [x] Unit Testing
 
