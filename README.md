@@ -12,7 +12,7 @@ Current features (some were left out due to time constraints):
 - [x] List of series
 - [x] Search by name
 - [x] Serie details
-- [x] Episode Details
+- [x] Episode details
 - [x] Bookmarked series
 - [x] PIN and FaceID authentication
 - [ ] Search by Actor/Actress name
