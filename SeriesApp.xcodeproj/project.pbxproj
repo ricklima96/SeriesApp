@@ -194,7 +194,7 @@
 			children = (
 				356F5C902A4B60370042EF4B /* SeriesApp */,
 				356F5CA12A4B60390042EF4B /* SeriesAppTests */,
-				356F5CAB2A4B60390042EF4B /* JobsitySeriesAppUITests */,
+				356F5CAB2A4B60390042EF4B /* SeriesAppUITests */,
 				356F5C8F2A4B60370042EF4B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -240,13 +240,13 @@
 			path = SeriesAppTests;
 			sourceTree = "<group>";
 		};
-		356F5CAB2A4B60390042EF4B /* JobsitySeriesAppUITests */ = {
+		356F5CAB2A4B60390042EF4B /* SeriesAppUITests */ = {
 			isa = PBXGroup;
 			children = (
 				356F5CAC2A4B60390042EF4B /* JobsitySeriesAppUITests.swift */,
 				356F5CAE2A4B60390042EF4B /* JobsitySeriesAppUITestsLaunchTests.swift */,
 			);
-			path = JobsitySeriesAppUITests;
+			path = SeriesAppUITests;
 			sourceTree = "<group>";
 		};
 		359351C42A4F8B5300449453 /* Models */ = {
