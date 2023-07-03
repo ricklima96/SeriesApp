@@ -1,4 +1,4 @@
-# JobsitySeriesApp
+# SeriesApp
 iOS application that lists TV series using the [TVMaze API](https://www.tvmaze.com/api).
 
 To run the app, download this repository and open it on Xcode.
