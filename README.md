@@ -18,7 +18,7 @@ Current features (some were left out due to time constraints):
 - [ ] PIN Authentication
 - [ ] Search by Actor/Actress name
 - [x] Unit Testing
-
+- [ ] UI Testing
 
 Observations:
 * The whole project was developed only using the main branch, git flow was not considered for simplicity purposes.
