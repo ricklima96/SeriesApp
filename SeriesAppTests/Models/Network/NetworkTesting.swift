@@ -41,9 +41,34 @@ class NetworkTesting: XCTestCase {
         let apiManagerMock = ApiManagerMock(mockedResponse: responseMock)
         sut?.apiManager = apiManagerMock
         
-        let series = try await sut?.fetchAllEpisodes(id: "1")
+        let series = try await sut?.fetchAllSeries(page: 1)
         
         XCTAssertEqual(series?.count, 2)
+    }
+    
+    func testFetchSearchedSeries() async throws {
+        let seriesMock = SeriesResponse(id: 1, name: "The Bear")
+        let responseMock = [SearchSeriesResponse(show: seriesMock)]
+        
+        let apiManagerMock = ApiManagerMock(mockedResponse: responseMock)
+        sut?.apiManager = apiManagerMock
+        
+        let searchResults = try await sut?.fetchSearchedSeries(query: "")
+        
+        XCTAssertEqual(searchResults?.count, 1)
+    }
+    
+    func testFetchAllEpisodes() async throws {
+        let responseMock = [
+            EpisodeResponse(id: 1, name: "ep 1", number: 1, season: 1),
+            EpisodeResponse(id: 2, name: "ep 2", number: 1, season: 1) ]
+        
+        let apiManagerMock = ApiManagerMock(mockedResponse: responseMock)
+        sut?.apiManager = apiManagerMock
+        
+        let episodes = try await sut?.fetchAllEpisodes(id: "1")
+        
+        XCTAssertEqual(episodes?.count, 2)
     }
 }
 
