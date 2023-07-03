@@ -33,5 +33,7 @@ Observations:
 
 * The project also contains SwiftLint to ensure code styling, conventions and good practices
 
+* The service unit testing was made by creating a mock API manager. By avoiding using the API manager as a singleton, we ensure its testability and by making the service depend on the protocol, we ensure the D in Solid, which stands for dependency inversion, where instead of depending on the higher level, we depend on abstractions.
+
 * `myString.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)` is a neat short line of code to remove all HTML tags from text.
 
