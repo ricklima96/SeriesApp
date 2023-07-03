@@ -15,19 +15,25 @@ protocol SeriesServiceProtocol {
 
 final class SeriesService: SeriesServiceProtocol {
 
+    public var apiManager: ApiManagerProtocol
+
+    init(apiManager: ApiManagerProtocol = ApiManager()) {
+        self.apiManager = apiManager
+    }
+
     func fetchAllSeries(page: Int) async throws -> [SeriesResponse] {
         let urlRequest = try buildRequest(SeriesListRequest(page: page))
-        return try await ApiManager.shared.callApi([SeriesResponse].self, urlRequest: urlRequest)
+        return try await apiManager.callApi([SeriesResponse].self, urlRequest: urlRequest)
     }
 
     func fetchSearchedSeries(query: String) async throws -> [SearchSeriesResponse] {
         let urlRequest = try buildRequest(SearchSeriesRequest(query: query))
-        return try await ApiManager.shared.callApi([SearchSeriesResponse].self, urlRequest: urlRequest)
+        return try await apiManager.callApi([SearchSeriesResponse].self, urlRequest: urlRequest)
     }
 
     func fetchAllEpisodes(id: String) async throws -> [EpisodeResponse] {
         let urlRequest = try buildRequest(EpisodeRequest(id: id))
-        return try await ApiManager.shared.callApi([EpisodeResponse].self, urlRequest: urlRequest)
+        return try await apiManager.callApi([EpisodeResponse].self, urlRequest: urlRequest)
     }
 
     func buildRequest(_ requestModel: RequestProtocol) throws -> URLRequest {

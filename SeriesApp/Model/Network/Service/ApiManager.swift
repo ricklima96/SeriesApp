@@ -12,9 +12,12 @@ enum NetworkError: Error {
     case badUrl(String)
 }
 
-class ApiManager {
-    static let shared = ApiManager()
+protocol ApiManagerProtocol {
+    func callApi<T: Decodable>(_: T.Type, urlRequest: URLRequest) async throws -> T
+}
 
+class ApiManager: ApiManagerProtocol {
+    
     func callApi<T: Decodable>(_: T.Type, urlRequest: URLRequest) async throws -> T {
         do {
             let (data, _) = try await URLSession.shared.data(for: urlRequest)

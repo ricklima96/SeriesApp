@@ -193,7 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				356F5C902A4B60370042EF4B /* SeriesApp */,
-				356F5CA12A4B60390042EF4B /* JobsitySeriesAppTests */,
+				356F5CA12A4B60390042EF4B /* SeriesAppTests */,
 				356F5CAB2A4B60390042EF4B /* JobsitySeriesAppUITests */,
 				356F5C8F2A4B60370042EF4B /* Products */,
 			);
@@ -231,13 +231,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		356F5CA12A4B60390042EF4B /* JobsitySeriesAppTests */ = {
+		356F5CA12A4B60390042EF4B /* SeriesAppTests */ = {
 			isa = PBXGroup;
 			children = (
 				359351C62A4F8B6C00449453 /* ViewModels */,
 				359351C42A4F8B5300449453 /* Models */,
 			);
-			path = JobsitySeriesAppTests;
+			path = SeriesAppTests;
 			sourceTree = "<group>";
 		};
 		356F5CAB2A4B60390042EF4B /* JobsitySeriesAppUITests */ = {

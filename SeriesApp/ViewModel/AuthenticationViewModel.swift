@@ -15,7 +15,7 @@ protocol AuthenticationViewModelProtocol {
     func optedOutOfAuth()
 }
 
-class AuthenticationViewModel: ObservableObject, AuthenticationViewModelProtocol {
+final class AuthenticationViewModel: ObservableObject, AuthenticationViewModelProtocol {
     @Published var deviceBiometricAuthSupport = false
     @Published var isUnlocked = false
     @Published var showPinCodeView = false
