@@ -4,7 +4,7 @@ iOS application that lists TV series using the [TVMaze API](https://www.tvmaze.c
 To run the app, download this repository and open it on Xcode.
 
 * This project is implemented using MVVM architecture pattern.
-* The Model layer contains any necessary data or business logic needed to get all the shows and their information.
+* The Model layer contains any necessary data or business logic needed to get all the series and their information.
 * Views are built in SwiftUI, and responsible for displaying all the data to the user.
 * View Models handle all the interactions and update the view with the requested information.
 
