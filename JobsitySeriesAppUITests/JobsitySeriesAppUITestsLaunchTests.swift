@@ -1,6 +1,6 @@
 //
-//  JobsitySeriesAppUITestsLaunchTests.swift
-//  JobsitySeriesAppUITests
+//  SeriesAppUITestsLaunchTests.swift
+//  SeriesAppUITests
 //
 //  Created by Ricardo Ribeiro on 27/06/23.
 //
